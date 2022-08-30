@@ -1,1 +1,18 @@
 # florist-blaklinten
+
+## Florist Blåklint Website
+[Website](https://ntig-uppsala.github.io/florist-blaklinten/florist-blaklint/)
+
+## DoD
+- Alla i gruppen måste ha kollat på den färdiga produkten och enas om att den är färdig.
+- Koden incheckad och klar i erat versionshanteringssystem.
+- Kommentarer klara.
+- Genererad teknisk dokumentation utifrån kod och egen text.
+- Tester klara (och koden klarar dem).
+- En färdig "produkt". Antingen en hemsida som lätt kan läggas upp eller ett program paketerat för installation hos kund. 
+- Se till att uppgiften är redo för presentation innan lappen flyttas till “done”.
+
+## HTML validering
+https://validator.w3.org/#validate_by_upload
+
+
