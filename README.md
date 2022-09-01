@@ -12,7 +12,7 @@
 - En färdig "produkt". Antingen en hemsida som lätt kan läggas upp eller ett program paketerat för installation hos kund. 
 - Se till att uppgiften är redo för presentation innan lappen flyttas till “done”.
 
-## HTML validering
-https://validator.w3.org/#validate_by_upload
-
-
+## Validering
+[HTML Validering](https://validator.w3.org/#validate_by_upload)
+[CSS Validering](https://jigsaw.w3.org/css-validator/validator.html.en#validate_by_upload)
+[Javascript Validering](https://javascriptvalidator.net/)
