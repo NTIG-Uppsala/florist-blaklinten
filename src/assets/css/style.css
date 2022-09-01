@@ -2,17 +2,16 @@ body{
     background-color: #212529;
 }
 
-ul, a, li, h1{
+a, li, h1{
   color: white;
   text-decoration: none;
   list-style: none;
-  padding: 5px;
+  padding: 2px;
 }
 
 h2{
 font-size: 15px;
 }
-
 
 header{
   font-size: 50px;
@@ -36,7 +35,7 @@ span{
   left: 0;
   bottom: 0;
   width: 99%;
-  height: fit-content;
+  height: 10%;
   background: grey;
   text-align: center;
 }
@@ -87,4 +86,3 @@ span{
     background: #3c0470;
     color: white;
   }
-  

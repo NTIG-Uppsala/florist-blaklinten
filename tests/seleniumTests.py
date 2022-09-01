@@ -24,20 +24,20 @@ class CheckSiteAvailability(unittest.TestCase):
         self.browser.get(self.website_url)
         self.assertIn("Florist Blåklinten", self.browser.title) 
 
-    # Tests if the class "fa-facebook" is on the page
+    # Tests if the class "fa-facebook" is on the page and clicks it
     def test_check_facebook(self):
         self.browser.get(self.website_url)
-        self.browser.find_element(By.CLASS_NAME, "fa-facebook")
+        self.browser.find_element(By.CLASS_NAME, "fa-facebook").click()
 
-    # Tests if the class "fa-twitter" is on the page
+    # Tests if the class "fa-twitter" is on the page and clicks it
     def test_check_twitter(self):
         self.browser.get(self.website_url)
-        self.browser.find_element(By.CLASS_NAME, "fa-twitter")
+        self.browser.find_element(By.CLASS_NAME, "fa-twitter").click()
 
-    # Tests if the class "fa-instagram" is on the page
+    # Tests if the class "fa-instagram" is on the page and clicks it
     def test_check_instagram(self):
         self.browser.get(self.website_url)
-        self.browser.find_element(By.CLASS_NAME, "fa-instagram")
+        self.browser.find_element(By.CLASS_NAME, "fa-instagram").click()
 
 if __name__ == "__main__":
     unittest.main()
