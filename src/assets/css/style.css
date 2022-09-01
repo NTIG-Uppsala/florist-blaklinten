@@ -25,13 +25,6 @@ span{
   font-weight: bold;
 }
 
-.openTime, .contact {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  text-align: center;
-}
-
 
 /* footer */
 
@@ -64,6 +57,8 @@ span{
 .footer-item-3{
   min-height: 100px;
 }
+
+/* social media */
 .fa {
   height: fit-content;
   padding: 10px;
