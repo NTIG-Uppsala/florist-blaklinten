@@ -33,7 +33,7 @@ class CheckWebsite(unittest.TestCase):
         self.browser.get(self.website_url)
         self.browser.find_element(By.CSS_SELECTOR, ".fa-facebook").click()
         current_url = self.browser.find_element(By.CSS_SELECTOR, ".fa-facebook").get_attribute("href")
-        assert current_url == "https://www.facebook.com/ntiuppsalsa"
+        assert current_url == "https://www.facebook.com/ntiuppsala"
 
     def test_check_link_twitter(self):
         self.browser.get(self.website_url)
