@@ -1,7 +1,7 @@
 # florist-blaklinten
 
 ## Florist Blåklint Website
-[Website](https://ntig-uppsala.github.io/florist-blaklinten/src/)
+[Website](https://ntig-uppsala.github.io/florist-blaklinten/florist-blaklint/)
 
 ## DoD
 - Alla i gruppen måste ha kollat på den färdiga produkten och enas om att den är färdig.
