@@ -1,3 +1,4 @@
+from tkinter import E
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -24,15 +25,15 @@ class CheckWebsite(unittest.TestCase):
     #Check if "Florist Blåklinten" is in the <title> of the page
     def test_page_title(self):
         self.browser.get(self.website_url)
-        self.assertIn("Florist Blåklinten", self.browser.title) 
-
+        title = self.browser.title
+        assert title == "Florist Blåklinten"
         
     #checks the links and clicks on them and compares it with "current_url"
     def test_click_link_facebook(self):
         self.browser.get(self.website_url)
         self.browser.find_element(By.CSS_SELECTOR, ".fa-facebook").click()
         current_url = self.browser.find_element(By.CSS_SELECTOR, ".fa-facebook").get_attribute("href")
-        assert current_url == "https://www.facebook.com/ntiuppsala"
+        assert current_url == "https://www.facebook.com/ntiuppsalsa"
 
     def test_check_link_twitter(self):
         self.browser.get(self.website_url)
