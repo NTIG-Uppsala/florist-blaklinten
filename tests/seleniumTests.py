@@ -1,6 +1,7 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.common.by import By
@@ -9,16 +10,14 @@ class CheckWebsite(unittest.TestCase):
     website_url = "https://ntig-uppsala.github.io/florist-blaklinten/florist-blaklint/" # Standard URL 
 
     def setUp(self):
-        driver_path = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install() # Initializes the driver
-
-        # Run the browser with no GUI
-        chrome_options = Options()
-        chrome_options.add_argument("--headless") 
-
-        #Removes the "[0906/090604.968:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'interest-cohort'.", source: (0)" warning
-        chrome_options.add_argument("--log-level=1") 
-
-        self.browser = webdriver.Chrome(driver_path, options=chrome_options) #Initializes the browser instance with the driver
+        service = Service(executable_path=ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        
+        self.browser = webdriver.Chrome(service=service, options=options)
         self.addCleanup(self.browser.quit) # Closes browser when the tests are finished
 
     #Check if "Florist Blåklinten" is in the <title> of the page
