@@ -6,7 +6,7 @@ from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.common.by import By
 
 class CheckWebsite(unittest.TestCase):
-    website_url = "http://localhost:8000" # Standard URL 
+    website_url = "http://localhost:8000/" # Standard URL 
 
     def setUp(self):
         driver_path = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install() # Initializes the driver
