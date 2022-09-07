@@ -44,7 +44,7 @@ jobs:
     - name: start live server # Start a live-server for testing the webpage content
       run: |
         cd florist-blaklint/
-        python -m http.server 
+        python -m http.server &
 
 
     - name: Test with unittest on localhost
