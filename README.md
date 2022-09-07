@@ -17,6 +17,5 @@ I detta projekt kommer vi att skapa en hemsida för ett floristföretag.
 - Se till att uppgiften är redo för presentation innan lappen flyttas till “done”.
 
 ## Validering
-[HTML Validering](https://validator.w3.org/#validate_by_upload)
-[CSS Validering](https://jigsaw.w3.org/css-validator/validator.html.en#validate_by_upload)
-[Javascript Validering](https://javascriptvalidator.net/)
+[HTML5 Validator med en Github action](https://github.com/marketplace/actions/html5-validator)
+

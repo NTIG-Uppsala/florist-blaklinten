@@ -41,9 +41,15 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f tests/test_requirements.txt ]; then pip install -r tests/test_requirements.txt; fi
 
-    - name: Test with unittest
+    - name: start live server # Start a live-server for testing the webpage content
       run: |
-        python -m unittest tests/seleniumTests.py
+        cd florist-blaklint/
+        python -m http.server 
+
+
+    - name: Test with unittest on localhost
+      run: |
+        python -m unittest tests/seleniumTests.py http://localhost:8000
 
   deploy:
     permissions:
