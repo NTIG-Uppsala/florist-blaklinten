@@ -51,10 +51,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - name: Checkout Repo
-          uses: actions/checkout@v2
-        
-        - name: Deploy website 🚀
-          uses: JamesIves/github-pages-deploy-action@v4
-          with:
-            folder: florist-blaklint
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    
+    - name: Deploy website 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: florist-blaklint
