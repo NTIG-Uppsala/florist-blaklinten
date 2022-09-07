@@ -1,5 +1,5 @@
 # Florist Blåklinten
-[![Tests](https://github.com/NTIG-Uppsala/florist-blaklinten/actions/workflows/tests.yml/badge.svg)](https://github.com/NTIG-Uppsala/florist-blaklinten/actions/workflows/tests.yml)
+[![Tests and Validation](https://github.com/NTIG-Uppsala/florist-blaklinten/actions/workflows/tests.yml/badge.svg)](https://github.com/NTIG-Uppsala/florist-blaklinten/actions/workflows/tests.yml)
 
 ## Florist Blåklint Website
 I detta projekt kommer vi att skapa en hemsida för ett floristföretag.

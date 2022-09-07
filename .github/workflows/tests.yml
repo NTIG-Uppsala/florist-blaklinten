@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Tests
+name: Tests and Validation
 
 on:
   push:
@@ -13,22 +13,34 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
+  code_validator:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      
+      - name: ✔ HTML5 Validator
+        uses: Gustavsson123/html5validator-action@v7.1.1
+        with:
+          root: florist-blaklint/
+          css: true
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f tests/test_requirements.txt ]; then pip install -r tests/test_requirements.txt; fi
+  build:
+    runs-on: ubuntu-latest
 
-    - name: Test with unittest
-      run: |
-        python -m unittest tests/seleniumTests.py
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f tests/test_requirements.txt ]; then pip install -r tests/test_requirements.txt; fi
+
+      - name: Test with unittest
+        run: |
+          python -m unittest tests/seleniumTests.py
