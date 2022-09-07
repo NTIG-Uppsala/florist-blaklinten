@@ -42,8 +42,7 @@ jobs:
         if [ -f tests/test_requirements.txt ]; then pip install -r tests/test_requirements.txt; fi
 
     - name: Test with unittest
-      run: |
-        python -m unittest tests/seleniumTests.py
+      run: python -m unittest tests/seleniumTests.py
 
   deploy:
     permissions:
