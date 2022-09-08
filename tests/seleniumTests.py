@@ -47,5 +47,5 @@ class CheckWebsite(unittest.TestCase):
         assert current_url == "https://instagram.com/ntiuppsala"
 
 if __name__ == "__main__":
-    CheckWebsite.website_url = sys.argv.pop() # Change url to passed in argument
-    unittest.main(verbosity=2) # Run unit tests
+    CheckWebsite.website_url = sys.argv.pop()
+    unittest.main(verbosity=2)
