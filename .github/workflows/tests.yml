@@ -39,10 +39,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        if [ -f tests/test_requirements.txt ]; then pip install -r tests/test_requirements.txt; fi
+        python -m pip install -r tests_requirements.txt
         sudo apt-get install google-chrome-stable
     
     - name: Test with unittest locally
-      run: python -m unittest tests/seleniumTests.py 
+      run: python -m unittest tests/seleniumTests.py https://localhost:8000
 
   
