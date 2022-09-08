@@ -29,20 +29,20 @@ class CheckWebsite(unittest.TestCase):
     #checks the links and clicks on them and compares it with "current_url"
     def test_click_link_facebook(self):
         self.browser.get(self.website_url)
-        self.browser.find_element(By.CSS_SELECTOR, ".fa-facebook").click()
-        current_url = self.browser.find_element(By.CSS_SELECTOR, ".fa-facebook").get_attribute("href")
+        self.browser.find_element(By.CLASS_NAME, "fa-facebook").click()
+        current_url = self.browser.find_element(By.CLASS_NAME, "fa-facebook").get_attribute("href")
         assert current_url == "https://www.facebook.com/ntiuppsala"
 
     def test_check_link_twitter(self):
         self.browser.get(self.website_url)
-        self.browser.find_element(By.CSS_SELECTOR, ".fa-twitter").click()
-        current_url = self.browser.find_element(By.CSS_SELECTOR, ".fa-twitter").get_attribute("href")
+        self.browser.find_element(By.CLASS_NAME, "fa-twitter").click()
+        current_url = self.browser.find_element(By.CLASS_NAME, "fa-twitter").get_attribute("href")
         assert current_url == "https://twitter.com/ntiuppsala"
 
     def test_check_link_instagram(self):
         self.browser.get(self.website_url)
-        self.browser.find_element(By.CSS_SELECTOR, ".fa-instagram").click()
-        current_url = self.browser.find_element(By.CSS_SELECTOR, ".fa-instagram").get_attribute("href")
+        self.browser.find_element(By.CLASS_NAME, "fa-instagram").click()
+        current_url = self.browser.find_element(By.CLASS_NAME, "fa-instagram").get_attribute("href")
         assert current_url == "https://instagram.com/ntiuppsala"
 
 if __name__ == "__main__":
