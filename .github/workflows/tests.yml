@@ -40,8 +40,26 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f tests/test_requirements.txt ]; then pip install -r tests/test_requirements.txt; fi
+    
+    - name: start live server # Start a live-server for testing the webpage content
+      run: |
+        cd florist-blaklint/
+        python -m http.server & 
 
-    - name: Test with unittest
-      run: python -m unittest tests/seleniumTests.py
+    - name: Test with unittest on localhost
+      run: python -m unittest tests/seleniumTests.py http://localhost:8000
 
+    deploy:
+      permissions:
+        contents: write
+      needs: [ code_validator, run_tests ]
+      runs-on: ubuntu-latest
 
+      steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      
+      - name: Deploy website 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: florist-blaklint
