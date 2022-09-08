@@ -1,5 +1,4 @@
 import unittest
-import sys
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -8,7 +7,7 @@ from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.common.by import By
 
 class CheckWebsite(unittest.TestCase):
-    website_url = "http://localhost:8000/" # Standard URL placeholder
+    website_url = "https://ntig-uppsala.github.io/florist-blaklinten/florist-blaklint/" # Standard URL 
 
     def setUp(self):
         service = Service(executable_path=ChromeDriverManager().install())
@@ -47,5 +46,4 @@ class CheckWebsite(unittest.TestCase):
         assert current_url == "https://instagram.com/ntiuppsala"
 
 if __name__ == "__main__":
-    CheckWebsite.website_url = sys.argv.pop()
     unittest.main(verbosity=2)
