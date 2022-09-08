@@ -40,7 +40,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f tests/test_requirements.txt ]; then pip install -r tests/test_requirements.txt; fi
-        sudo apt-get install -y chrome
+        sudo apt-get install -y chromium-browser
 
     - name: start live server # Start a live-server for testing the webpage content
       run: |
