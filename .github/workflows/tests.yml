@@ -47,7 +47,7 @@ jobs:
         python -m http.server & 
 
     - name: Test with unittest on localhost
-      run: python -m unittest tests/seleniumTests.py http://localhost:8000
+      run: python -m unittest tests/seleniumTests.py http://localhost:5500/florist-blaklint/
 
   deploy:
     permissions:
