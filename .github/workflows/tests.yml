@@ -43,6 +43,6 @@ jobs:
         sudo apt-get install google-chrome-stable
     
     - name: Test with unittest locally
-      run: python -m unittest tests/seleniumTests.py https://localhost:8000
+      run: python -m unittest tests/seleniumTests.py 
 
   
