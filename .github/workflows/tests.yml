@@ -47,7 +47,6 @@ jobs:
   deploy:
     permissions:
       contents: write
-    needs: [ code_validator, run_tests ]
     runs-on: ubuntu-latest
 
     steps:
