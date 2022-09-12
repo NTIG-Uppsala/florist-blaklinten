@@ -18,25 +18,30 @@ span{
 .container{
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 100px;
 }
 
 .openTime{
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .openTime h1{
   font-size: 25px;
 }
 
-.openTime p{
+.openTime a{
   font-size: 20px;
 }
 
 .contact{
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .contact h1{
@@ -45,6 +50,7 @@ span{
 
 .contact a{
   color: black;
+  text-decoration: underline;
 }
 
 
@@ -57,6 +63,7 @@ span{
   bottom: 0;
   left: 0;
   right: 0;
+  position: absolute;
 }
 
 /* social media */
