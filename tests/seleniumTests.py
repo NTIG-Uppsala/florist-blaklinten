@@ -1,6 +1,10 @@
 
+from email.mime import image
+from multiprocessing.context import assert_spawning
+from traceback import print_tb
 import unittest
 import sys
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -8,8 +12,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.common.by import By
 
+
 class CheckWebsite(unittest.TestCase):
-    website_url = "http://localhost:8000/" # Standard URL 
+    website_url = "http://localhost:8000/"  # Standard URL
 
     def setUp(self):
         service = Service(executable_path=ChromeDriverManager().install())
@@ -18,17 +23,18 @@ class CheckWebsite(unittest.TestCase):
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        
-        self.browser = webdriver.Chrome(service=service, options=options)
-        self.addCleanup(self.browser.quit) # Closes browser when the tests are finished
 
-    #Check if "Florist Blåklinten" is in the <title> of the page
+        self.browser = webdriver.Chrome(service=service, options=options)
+        # Closes browser when the tests are finished
+        self.addCleanup(self.browser.quit)
+
+    # Check if "Florist Blåklinten" is in the <title> of the page
     def test_page_title(self):
         self.browser.get(self.website_url)
         title = self.browser.title
         assert title == "Florist Blåklinten"
 
-    #checks that the opentimes are on the website
+    # checks that the opentimes are on the website
     def test_check_openTime(self):
         self.browser.get(self.website_url)
         openTime = self.browser.find_element(By.TAG_NAME, "body").text
@@ -52,33 +58,45 @@ class CheckWebsite(unittest.TestCase):
         contact = self.browser.find_element(By.TAG_NAME, "body").text
 
         controlText = [
-            "Kontakta oss", 
-            "Fjällgatan 32H 981 39 Finspång", 
+            "Kontakta oss",
+            "Fjällgatan 32H 981 39 Finspång",
             "0630-555-555",
             "info@blåklinten.se"
         ]
 
         for text in controlText:
             assert text in contact
-        
-    #checks the links and clicks on them and compares it with "current_url"
-    def test_click_link_facebook(self):
-        self.browser.get(self.website_url)
-        self.browser.find_element(By.CLASS_NAME, "fa-facebook").click()
-        current_url = self.browser.find_element(By.CLASS_NAME, "fa-facebook").get_attribute("href")
-        assert current_url == "https://www.facebook.com/ntiuppsala"
 
-    def test_check_link_twitter(self):
+    def test_check_images(self):
         self.browser.get(self.website_url)
-        self.browser.find_element(By.CLASS_NAME, "fa-twitter").click()
-        current_url = self.browser.find_element(By.CLASS_NAME, "fa-twitter").get_attribute("href")
-        assert current_url == "https://twitter.com/ntiuppsala"
+        picturePaths = ["florist-blaklint/assets/img/bild1.jpg", "florist-blaklint/assets/img/bild2.jpg", "florist-blaklint/assets/img/bild3.jpg"]
 
-    def test_check_link_instagram(self):
-        self.browser.get(self.website_url)
-        self.browser.find_element(By.CLASS_NAME, "fa-instagram").click()
-        current_url = self.browser.find_element(By.CLASS_NAME, "fa-instagram").get_attribute("href")
-        assert current_url == "https://instagram.com/ntiuppsala"
+        images = self.browser.find_elements(By.TAG_NAME, "img")
+
+        for image in images:
+            source = image.get_attribute("src")
+            for picture in picturePaths:
+                self.assertIn(picture, source)
+    # checks the links and clicks on them and compares it with "current_url"
+
+    # def test_click_link_facebook(self):
+    #     self.browser.get(self.website_url)
+    #     self.browser.find_element(By.CLASS_NAME, "fa-facebook").click()
+    #     current_url = self.browser.find_element(By.CLASS_NAME, "fa-facebook").get_attribute("href")
+    #     assert current_url == "https://www.facebook.com/ntiuppsala"
+
+    # def test_check_link_twitter(self):
+    #     self.browser.get(self.website_url)
+    #     self.browser.find_element(By.CLASS_NAME, "fa-twitter").click()
+    #     current_url = self.browser.find_element(By.CLASS_NAME, "fa-twitter").get_attribute("href")
+    #     assert current_url == "https://twitter.com/ntiuppsala"
+
+    # def test_check_link_instagram(self):
+    #     self.browser.get(self.website_url)
+    #     self.browser.find_element(By.CLASS_NAME, "fa-instagram").click()
+    #     current_url = self.browser.find_element(By.CLASS_NAME, "fa-instagram").get_attribute("href")
+    #     assert current_url == "https://instagram.com/ntiuppsala"
+
 
 if __name__ == "__main__":
     CheckWebsite.website_url = sys.argv.pop()

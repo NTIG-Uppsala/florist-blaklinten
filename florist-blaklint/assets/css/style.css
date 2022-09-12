@@ -20,21 +20,19 @@ span{
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   margin-top: 100px;
 }
 
 .openTime{
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .openTime h1{
   font-size: 25px;
 }
 
-.openTime a{
+.openTime li{
   font-size: 20px;
 }
 
@@ -53,6 +51,28 @@ span{
   text-decoration: underline;
 }
 
+.images {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+#bild1 {
+  width: 355px;
+  height: 236px;
+} 
+
+#bild2 {
+  width: 351px;
+  height: 234px;
+} 
+
+#bild3 {
+  width: 354px;
+  height: 236px;
+} 
 
 /* footer */
 .footer {
@@ -63,7 +83,7 @@ span{
   bottom: 0;
   left: 0;
   right: 0;
-  position: absolute;
+  margin-top: 100px;
 }
 
 /* social media */
@@ -94,4 +114,21 @@ span{
   .fa-instagram {
     background: #3c0470;
     color: white;
+  }
+
+  @media screen and (max-width: 450px){
+    #bild1{
+      width: 266px;
+      height: 177px;
+    }
+    
+    #bild2{
+      width: 255px;
+      height: 170px;
+    }
+
+    #bild3{
+      width: 262px;
+      height: 175px;
+    }
   }
