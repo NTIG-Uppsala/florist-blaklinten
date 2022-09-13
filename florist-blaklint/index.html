@@ -7,94 +7,92 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Florist Blåklinten</title>
-    <link rel="icon" type="image/x-icon" href="/florist-blaklint/assets/favicon/favicon-32x32.ico" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon-32x32.ico" sizes="32x32">
 </head>
 <body>
     <div class="background">
         <header>Florist Blåklinten</header>
     </div>
     
-    <div class="container">
-        <div class="openTime">
+    <div class="wrapper">
+        <table class="openHours">
             <h1>Öppettider</h1>
-            <table>
-                <tr>
-                    <th>Måndag</th>
-                    <td></td>
-                    <td>10 - 16</td>
-                </tr>
-                <tr>
-                    <th>Tisdag</th>
-                    <td></td>
-                    <td>10 - 16</td>
-                </tr>
-                <tr>
-                    <th>Onsdag</th>
-                    <td></td>
-                    <td>10 - 16</td>
-                </tr>
-                <tr>
-                    <th>Torsdag</th>
-                    <td></td>
-                    <td>10 - 16</td>
-                </tr>
-                <tr>
-                    <th>Fredag</th>
-                    <td></td>
-                    <td>10 - 16</td>
-                </tr>
-                <tr>
-                    <th>Lördag</th>
-                    <td></td>
-                    <td>12 - 15</td>
-                </tr>
-                <tr>
-                    <th>Söndag</th>
-                    <td></td>
-                    <td>Stängt!</td>
-                </tr>
-            </table>
-        </div>
-        <div class="products">
+            <tr dayData="Monday">
+                <th style="text-align: left;">Måndagar</th>
+                <td></td>
+                <td style="text-align: right;">10 - 16</td>
+            </tr>
+            <tr dayData="Tuesday">
+                <th style="text-align: left;">Tisdagar</th>
+                <td></td>
+                <td style="text-align: right;">10 - 16</td>
+            </tr>
+            <tr dayData="Wedensday">
+                <th style="text-align: left;">Onsdagar</th>
+                <td></td>
+                <td style="text-align: right;">10 - 16</td>
+            </tr>
+            <tr dayData="Thursday">
+                <th style="text-align: left;">Torsdagar</th>
+                <td></td>
+                <td style="text-align: right;">10 - 16</td>
+            </tr>
+            <tr dayData="Friday">
+                <th style="text-align: left;">Fredagar</th>
+                <td></td>
+                <td style="text-align: right;">10 - 16</td>
+            </tr>
+            <tr dayData="Saturday">
+                <th style="text-align: left;">Lördagar</th>
+                <td></td>
+                <td style="text-align: right;">12 - 15</td>
+            </tr>
+            <tr dayData="Sunday">
+                <th style="text-align: left;">Söndagar</th>
+                <td></td>
+                <td style="text-align: right;">Stängt</td>
+            </tr>
+        </table>
+    </div>
+    <div class="wrapper">
+        <table class="products">
             <h1>Produkter</h1>
-            <table>
-                <tr>
-                    <th>Sommarbuket</th>
-                    <td></td>
-                    <td>200 kr</td>
-                </tr>
-                <tr>
-                    <th>Bröllopsbruketter</th>
-                    <td></td>
-                    <td>1200 kr</td>
-                </tr>
-                <tr>
-                    <th>Begravningskrans</th>
-                    <td></td>
-                    <td>800 kr</td>
-                </tr>
-                <tr>
-                    <th>Höstbuket</th>
-                    <td></td>
-                    <td>400 kr</td>
-                </tr>
-                <tr>
-                    <th>Rosor 10-pack</th>
-                    <td></td>
-                    <td>150 kr</td>
-                </tr>
-                <tr>
-                    <th>Tulpaner 10-pack</th>
-                    <td></td>
-                    <td>100 kr</td>
-                </tr>
-                <tr>
-                    <th>Konsultation 30 min</th>
-                    <td></td>
-                    <td>250 kr</td>
-                </tr>
-            </table>
-        </div>
+            <tr productData="Sommarbuket">
+                <th style="text-align: left;">Sommarbuket</th>
+                <td></td>
+                <td style="text-align: right;">200 kr</td>
+            </tr>
+            <tr productData="Brollopsbruketter">
+                <th style="text-align: left;">Bröllopsbruketter</th>
+                <td></td>
+                <td style="text-align: right;">1200 kr</td>
+            </tr>
+            <tr productData="Begravningskrans">
+                <th style="text-align: left;">Begravningskrans</th>
+                <td></td>
+                <td style="text-align: right;">800 kr</td>
+            </tr>
+            <tr productData="Hostbukett">
+                <th style="text-align: left;">Höstbukett</th>
+                <td></td>
+                <td style="text-align: right;">400 kr</td>
+            </tr>
+            <tr productData="Rosor">
+                <th style="text-align: left;">Rosor 10-pack</th>
+                <td></td>
+                <td style="text-align: right;">150 kr</td>
+            </tr>
+            <tr productData="Tulpaner">
+                <th style="text-align: left;">Tulpaner 10-pack</th>
+                <td></td>
+                <td style="text-align: right;">100 kr</td>
+            </tr>
+            <tr productData="Konsultation">
+                <th style="text-align: left;">Konsultation 30 min</th>
+                <td></td>
+                <td style="text-align: right;">250 kr</td>
+            </tr>
+        </table>
     </div>
 
     <div class="images">

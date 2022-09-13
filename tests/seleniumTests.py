@@ -2,6 +2,7 @@ import unittest
 import os
 import sys
 import time
+from types import NoneType
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -33,21 +34,53 @@ class CheckWebsite(unittest.TestCase):
     # checks that the opentimes are on the website
     def test_check_openTime(self):
         self.browser.get(self.website_url)
-        openTime = self.browser.find_element(By.TAG_NAME, "body").text
 
-        controlNames = [
-            "Öppettider",
-            "Måndag: 10-16",
-            "Tisdag: 10-16",
-            "Onsdag: 10-16",
-            "Torsdag: 10-16",
-            "Fredag: 10-16",
-            "Lördag: 12-15",
-            "Söndag: Stängt",
-        ]
+        # Dict of open hours
+        openTime = {
+            "Monday": ["Måndagar","10-16"],
+            "Tuesday": ["Tisdagar","10-16"],
+            "Wedensday": ["Onsdagar","10-16"],
+            "Thursday": ["Torsdagar", "10-16"],
+            "Friday": ["Fredagar", "10-16"],
+            "Saturday": ["Lördagar", "12-15"],
+            "Sunday": ["Söndagar", "Stängt"],
+        }
 
-        for text in controlNames:
-            assert text in openTime
+        openTimeTable = self.browser.find_element(By.CLASS_NAME, "openHours")
+        openTimeElements = openTimeTable.find_elements(By.TAG_NAME, "tr")
+
+        for open_hour in openTimeElements:
+            current_day = open_hour.get_attribute("dayData")
+            openTimeText = open_hour.text
+            print(openTimeText)
+            
+            if current_day in openTimeText:
+                self.assertIn(" ".join(openTime[current_day]), openTimeText)
+
+    def test_check_products(self):
+        self.browser.get(self.website_url)
+
+        # Dict of open hours
+        products = {
+            "Sommarbuket": ["Sommarbuket","200 kr"],
+            "Brollopsbruketter": ["Bröllopsbruketter","1200 kr"],
+            "Begravningskrans": ["Begravningskrans","800 kr"],
+            "Hostbukett": ["Höstbukett", "400 kr"],
+            "Rosor": ["Rosor 10-pack", "150 kr"],
+            "Tulpaner": ["Tulpaner 10-pack", "100 kr"],
+            "Konsultation": ["Konsultation 30 min", "250 kr"],
+        }
+
+        productsTable = self.browser.find_element(By.CLASS_NAME, "products")
+        productsElements = productsTable.find_elements(By.TAG_NAME, "tr")
+
+        for products in productsElements:
+            current_day = products.get_attribute("productData")
+            productsText = products.text
+            print(productsText)
+            
+            if current_day in productsText:
+                self.assertIn(" ".join(products[current_day]), productsText)
 
     def test_check_contact(self):
         self.browser.get(self.website_url)
@@ -62,24 +95,6 @@ class CheckWebsite(unittest.TestCase):
 
         for text in controlText:
             assert text in contact
-
-    def test_check_products(self):
-        self.browser.get(self.website_url)
-        products = self.browser.find_element(By.TAG_NAME, "body").text
-
-        productNames = [
-            "Produkter",
-            "Sommarbuket: 200kr",
-            "Bröllopsbruketter: 1200kr",
-            "Begravningskrans: 800kr",
-            "Höstbuket: 400kr",
-            "Rosor 10-pack: 150kr",
-            "Tulpaner 10-pack: 100kr",
-            "Konsultation 30 min: 250kr"
-        ]
-
-        for text in productNames:
-            assert text in products
 
     def test_check_background(self):
         pass
