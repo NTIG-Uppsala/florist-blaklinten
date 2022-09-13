@@ -3,11 +3,10 @@ import os
 import sys
 import time
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class CheckWebsite(unittest.TestCase):
@@ -82,6 +81,9 @@ class CheckWebsite(unittest.TestCase):
         for text in productNames:
             assert text in products
 
+    def test_check_background(self):
+        pass
+
     #checks images on the page and if they exists
     def test_check_images(self):
         self.browser.get(self.website_url)
@@ -97,24 +99,24 @@ class CheckWebsite(unittest.TestCase):
 
     # checks the links and clicks on them and compares it with "current_url"
 
-    def test_click_link_facebook(self):
-        self.browser.get(self.website_url)
-        self.browser.find_element(By.CLASS_NAME, "fa-facebook").click()
-        current_url = self.browser.find_element(By.CLASS_NAME, "fa-facebook").get_attribute("href")
-        assert current_url == "https://www.facebook.com/ntiuppsala"
 
-    def test_check_link_twitter(self):
+    def test_click_links_on_page(self):
         self.browser.get(self.website_url)
-        self.browser.find_element(By.CLASS_NAME, "fa-twitter").click()
-        current_url = self.browser.find_element(By.CLASS_NAME, "fa-twitter").get_attribute("href")
-        assert current_url == "https://twitter.com/ntiuppsala"
 
-    def test_check_link_instagram(self):
-        self.browser.get(self.website_url)
-        self.browser.find_element(By.CLASS_NAME, "fa-instagram").click()
-        current_url = self.browser.find_element(By.CLASS_NAME, "fa-instagram").get_attribute("href")
-        assert current_url == "https://instagram.com/ntiuppsala"
+        # List of social medias
+        socials = ["facebook", "instagram", "twitter"]
 
+        # Loop over list
+        for social in socials:
+            # Check if link and icon is on page
+            icon_element =  self.browser.find_element(By.CLASS_NAME, f"fa-{social}")
+            ActionChains(icon_element).move_to_element(icon_element).click()
+            icon_href = icon_element.get_attribute("href")
+
+            self.assertEqual(icon_href, f"https://{social}.com/ntiuppsala")
+    
+    def test_check_background(self):
+        pass
 
 if __name__ == "__main__":
     CheckWebsite.website_url = sys.argv.pop()
