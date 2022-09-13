@@ -47,12 +47,22 @@ span{
 }
 
 .openTime h1{
-  font-size: 25px;
+  font-size: 30px;
 }
 
-.openTime li{
+.openTime tr{
   font-size: 20px;
 }
+
+.openTime th{
+  text-align: left;
+}
+
+.openTime td{
+  text-align: right;
+  white-space: nowrap;
+}
+
 
 .contact{
   display: flex;
@@ -77,12 +87,21 @@ span{
 
 .products h1{
   margin-top: 50px;
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
 }
 
-.products li{
+.products tr{
   font-size: 20px;
+}
+
+.products th{
+  text-align: left;
+}
+
+.products td{
+  text-align: right;
+  white-space: nowrap;
 }
 
 .images {
