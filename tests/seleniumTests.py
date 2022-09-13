@@ -2,7 +2,6 @@ import unittest
 import os
 import sys
 import time
-from types import NoneType
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -54,13 +53,12 @@ class CheckWebsite(unittest.TestCase):
             openTimeText = open_hour.text
             print(openTimeText)
             
-            if current_day in openTimeText:
-                self.assertIn(" ".join(openTime[current_day]), openTimeText)
+            self.assertIn(current_day, openTime)
 
     def test_check_products(self):
         self.browser.get(self.website_url)
 
-        # Dict of open hours
+        # Dict of products
         products = {
             "Sommarbuket": ["Sommarbuket","200 kr"],
             "Brollopsbruketter": ["Bröllopsbruketter","1200 kr"],
@@ -74,13 +72,12 @@ class CheckWebsite(unittest.TestCase):
         productsTable = self.browser.find_element(By.CLASS_NAME, "products")
         productsElements = productsTable.find_elements(By.TAG_NAME, "tr")
 
-        for products in productsElements:
-            current_day = products.get_attribute("productData")
-            productsText = products.text
+        for product in productsElements:
+            current_product = product.get_attribute("productData")
+            productsText = product.text
             print(productsText)
             
-            if current_day in productsText:
-                self.assertIn(" ".join(products[current_day]), productsText)
+            self.assertIn(current_product, products)
 
     def test_check_contact(self):
         self.browser.get(self.website_url)
