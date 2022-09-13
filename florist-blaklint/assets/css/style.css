@@ -1,3 +1,12 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  scroll-behavior: smooth;
+ }
+
 
 a, li, h1{
   text-decoration: none;
@@ -5,8 +14,17 @@ a, li, h1{
   padding: 2px;
 }
 
+.background{
+  height: 70vh;
+  background-image: url("/florist-blaklint/assets/img/bg-b.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 header{
   font-size: 50px;
+  color: white;
   text-align: center;
 }
 
@@ -43,6 +61,7 @@ span{
 }
 
 .contact h1{
+  margin-top: 50px;
   font-size: 25px;
 }
 
@@ -57,6 +76,7 @@ span{
 }
 
 .products h1{
+  margin-top: 50px;
   font-size: 25px;
   text-align: center;
 }
