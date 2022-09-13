@@ -51,6 +51,19 @@ span{
   text-decoration: underline;
 }
 
+.products{
+  display: flex;
+  flex-direction: column;
+}
+
+.products h1{
+  font-size: 25px;
+}
+
+.products li{
+  font-size: 20px;
+}
+
 .images {
   display: flex;
   justify-content: center;

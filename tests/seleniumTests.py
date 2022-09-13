@@ -1,8 +1,5 @@
-
-from email.mime import image
-from multiprocessing.context import assert_spawning
-from traceback import print_tb
 import unittest
+import os
 import sys
 import time
 from selenium import webdriver
@@ -67,35 +64,56 @@ class CheckWebsite(unittest.TestCase):
         for text in controlText:
             assert text in contact
 
+    def test_check_products(self):
+        self.browser.get(self.website_url)
+        products = self.browser.find_element(By.TAG_NAME, "body").text
+
+        controlNames = [
+            "Produkter",
+            "Sommarbuket: 200kr",
+            "Bröllopsbruketter: 1200kr",
+            "Begravningskrans: 800kr",
+            "Höstbuket: 400kr",
+            "Rosor 10-pack: 150kr",
+            "Tulpaner 10-pack: 100kr",
+            "Konsultation 30 min: 250kr"
+        ]
+
+        for text in controlNames:
+            assert text in products
+
+    #checks images on the page and if they exists
     def test_check_images(self):
         self.browser.get(self.website_url)
-        picturePaths = ["florist-blaklint/assets/img/bild1.jpg", "florist-blaklint/assets/img/bild2.jpg", "florist-blaklint/assets/img/bild3.jpg"]
+        imageNames = ["bild1.jpg", "bild2.jpg", "bild3.jpg"]
 
         images = self.browser.find_elements(By.TAG_NAME, "img")
 
         for image in images:
             source = image.get_attribute("src")
-            for picture in picturePaths:
-                self.assertIn(picture, source)
+            sourceImage = os.path.basename(os.path.normpath(source))
+            print(sourceImage)
+            assert sourceImage in imageNames
+
     # checks the links and clicks on them and compares it with "current_url"
 
-    # def test_click_link_facebook(self):
-    #     self.browser.get(self.website_url)
-    #     self.browser.find_element(By.CLASS_NAME, "fa-facebook").click()
-    #     current_url = self.browser.find_element(By.CLASS_NAME, "fa-facebook").get_attribute("href")
-    #     assert current_url == "https://www.facebook.com/ntiuppsala"
+    def test_click_link_facebook(self):
+        self.browser.get(self.website_url)
+        self.browser.find_element(By.CLASS_NAME, "fa-facebook").click()
+        current_url = self.browser.find_element(By.CLASS_NAME, "fa-facebook").get_attribute("href")
+        assert current_url == "https://www.facebook.com/ntiuppsala"
 
-    # def test_check_link_twitter(self):
-    #     self.browser.get(self.website_url)
-    #     self.browser.find_element(By.CLASS_NAME, "fa-twitter").click()
-    #     current_url = self.browser.find_element(By.CLASS_NAME, "fa-twitter").get_attribute("href")
-    #     assert current_url == "https://twitter.com/ntiuppsala"
+    def test_check_link_twitter(self):
+        self.browser.get(self.website_url)
+        self.browser.find_element(By.CLASS_NAME, "fa-twitter").click()
+        current_url = self.browser.find_element(By.CLASS_NAME, "fa-twitter").get_attribute("href")
+        assert current_url == "https://twitter.com/ntiuppsala"
 
-    # def test_check_link_instagram(self):
-    #     self.browser.get(self.website_url)
-    #     self.browser.find_element(By.CLASS_NAME, "fa-instagram").click()
-    #     current_url = self.browser.find_element(By.CLASS_NAME, "fa-instagram").get_attribute("href")
-    #     assert current_url == "https://instagram.com/ntiuppsala"
+    def test_check_link_instagram(self):
+        self.browser.get(self.website_url)
+        self.browser.find_element(By.CLASS_NAME, "fa-instagram").click()
+        current_url = self.browser.find_element(By.CLASS_NAME, "fa-instagram").get_attribute("href")
+        assert current_url == "https://instagram.com/ntiuppsala"
 
 
 if __name__ == "__main__":
