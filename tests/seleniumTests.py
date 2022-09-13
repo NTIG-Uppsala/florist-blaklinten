@@ -68,7 +68,7 @@ class CheckWebsite(unittest.TestCase):
         self.browser.get(self.website_url)
         products = self.browser.find_element(By.TAG_NAME, "body").text
 
-        controlNames = [
+        productNames = [
             "Produkter",
             "Sommarbuket: 200kr",
             "Bröllopsbruketter: 1200kr",
@@ -79,7 +79,7 @@ class CheckWebsite(unittest.TestCase):
             "Konsultation 30 min: 250kr"
         ]
 
-        for text in controlNames:
+        for text in productNames:
             assert text in products
 
     #checks images on the page and if they exists
