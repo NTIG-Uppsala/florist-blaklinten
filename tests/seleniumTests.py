@@ -1,7 +1,6 @@
 import unittest
 import os
 import sys
-import pathlib
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
@@ -32,6 +31,12 @@ class CheckWebsite(unittest.TestCase):
         title = self.browser.title
         assert title == "Florist Blåklinten"
 
+    def test_check_logo(self):
+        self.browser.get(self.website_url)
+
+        logoElement = self.browser.find_element(By.XPATH, "//link[@type='image/x-icon']")
+        self.assertIn('favicon-32x32.ico', logoElement.get_attribute("href"))
+
     # checks that the opentimes are on the website
     def test_find_text(self):
         self.browser.get(self.website_url)
@@ -50,7 +55,7 @@ class CheckWebsite(unittest.TestCase):
             "Kontakta oss",
             "Fjällgatan 32H 981 39 Finspång",
             "0630-555-555",
-            "info@blåklinten.se",
+            "info@ntig-uppsala.github.io",
             "Sommarbuket", "200 kr",
             "Bröllopsbruketter", "1200 kr",
             "Begravningskrans", "800 kr",
@@ -68,9 +73,7 @@ class CheckWebsite(unittest.TestCase):
         self.browser.get(self.website_url)
 
         my_property = WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".background"))).value_of_css_property("background-image").split('"')[1]
-        sourceImage = os.path.basename(os.path.normpath(my_property))
-        print(sourceImage)
-        self.assertIn("bg-b.jpg", sourceImage)
+        self.assertIn("bg-b.jpg", my_property)
 
     #checks images on the page and if they exists
     def test_check_images(self):
@@ -83,7 +86,7 @@ class CheckWebsite(unittest.TestCase):
             source = image.get_attribute("src")
             sourceImage = os.path.basename(os.path.normpath(source))
             print(sourceImage)
-            assert sourceImage in imageNames
+            self.assertIn(sourceImage, imageNames)
 
     # checks the links and clicks on them and compares it with "current_url"
     def test_click_links_on_page(self):
