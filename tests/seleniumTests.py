@@ -1,7 +1,9 @@
 import unittest
 import os
 import sys
-import time
+import pathlib
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -61,6 +63,15 @@ class CheckWebsite(unittest.TestCase):
         for text in controlTexts:
             self.assertIn(text, pageText)
 
+    #checks background image
+    def test_check_background(self):
+        self.browser.get(self.website_url)
+
+        my_property = WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".background"))).value_of_css_property("background-image").split('"')[1]
+        sourceImage = os.path.basename(os.path.normpath(my_property))
+        print(sourceImage)
+        self.assertIn("bg-b.jpg", sourceImage)
+
     #checks images on the page and if they exists
     def test_check_images(self):
         self.browser.get(self.website_url)
@@ -75,8 +86,6 @@ class CheckWebsite(unittest.TestCase):
             assert sourceImage in imageNames
 
     # checks the links and clicks on them and compares it with "current_url"
-
-
     def test_click_links_on_page(self):
         self.browser.get(self.website_url)
 
@@ -91,9 +100,6 @@ class CheckWebsite(unittest.TestCase):
             iconHref = iconElement.get_attribute("href")
 
             self.assertEqual(iconHref, f"https://{social}.com/ntiuppsala")
-    
-    def test_check_background(self):
-        pass
 
 if __name__ == "__main__":
     CheckWebsite.website_url = sys.argv.pop()
