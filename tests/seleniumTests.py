@@ -31,70 +31,35 @@ class CheckWebsite(unittest.TestCase):
         assert title == "Florist Blåklinten"
 
     # checks that the opentimes are on the website
-    def test_check_openTime(self):
+    def test_find_text(self):
         self.browser.get(self.website_url)
+        pageText = self.browser.find_element(By.TAG_NAME, "body").text
 
-        # Dict of open hours
-        openTime = {
-            "Monday": ["Måndagar","10-16"],
-            "Tuesday": ["Tisdagar","10-16"],
-            "Wedensday": ["Onsdagar","10-16"],
-            "Thursday": ["Torsdagar", "10-16"],
-            "Friday": ["Fredagar", "10-16"],
-            "Saturday": ["Lördagar", "12-15"],
-            "Sunday": ["Söndagar", "Stängt"],
-        }
-
-        openTimeTable = self.browser.find_element(By.CLASS_NAME, "openHours")
-        openTimeElements = openTimeTable.find_elements(By.TAG_NAME, "tr")
-
-        for open_hour in openTimeElements:
-            current_day = open_hour.get_attribute("dayData")
-            openTimeText = open_hour.text
-            print(openTimeText)
-            
-            self.assertIn(current_day, openTime)
-
-    def test_check_products(self):
-        self.browser.get(self.website_url)
-
-        # Dict of products
-        products = {
-            "Sommarbuket": ["Sommarbuket","200 kr"],
-            "Brollopsbruketter": ["Bröllopsbruketter","1200 kr"],
-            "Begravningskrans": ["Begravningskrans","800 kr"],
-            "Hostbukett": ["Höstbukett", "400 kr"],
-            "Rosor": ["Rosor 10-pack", "150 kr"],
-            "Tulpaner": ["Tulpaner 10-pack", "100 kr"],
-            "Konsultation": ["Konsultation 30 min", "250 kr"],
-        }
-
-        productsTable = self.browser.find_element(By.CLASS_NAME, "products")
-        productsElements = productsTable.find_elements(By.TAG_NAME, "tr")
-
-        for product in productsElements:
-            current_product = product.get_attribute("productData")
-            productsText = product.text
-            print(productsText)
-            
-            self.assertIn(current_product, products)
-
-    def test_check_contact(self):
-        self.browser.get(self.website_url)
-        contact = self.browser.find_element(By.TAG_NAME, "body").text
-
-        controlText = [
+        controlTexts = [
+            "Florist Blåklinten",
+            "Öppettider",
+            "Måndag","10 - 16",
+            "Tisdag","10 - 16",
+            "Onsdag","10 - 16",
+            "Torsdag","10 - 16",
+            "Fredag","10 - 16",
+            "Lördag","12 - 15",
+            "Söndag","Stängt",
             "Kontakta oss",
             "Fjällgatan 32H 981 39 Finspång",
             "0630-555-555",
-            "info@blåklinten.se"
+            "info@blåklinten.se",
+            "Sommarbuket", "200 kr",
+            "Bröllopsbruketter", "1200 kr",
+            "Begravningskrans", "800 kr",
+            "Höstbuket", "400 kr",
+            "Rosor 10-pack", "150 kr", 
+            "Tulpaner 10-pack", "100 kr", 
+            "Konsultation 30 min", "250 kr"
         ]
 
-        for text in controlText:
-            assert text in contact
-
-    def test_check_background(self):
-        pass
+        for text in controlTexts:
+            self.assertIn(text, pageText)
 
     #checks images on the page and if they exists
     def test_check_images(self):
@@ -121,11 +86,11 @@ class CheckWebsite(unittest.TestCase):
         # Loop over list
         for social in socials:
             # Check if link and icon is on page
-            icon_element =  self.browser.find_element(By.CLASS_NAME, f"fa-{social}")
-            ActionChains(icon_element).move_to_element(icon_element).click()
-            icon_href = icon_element.get_attribute("href")
+            iconElement =  self.browser.find_element(By.CLASS_NAME, f"fa-{social}")
+            ActionChains(iconElement).move_to_element(iconElement).click()
+            iconHref = iconElement.get_attribute("href")
 
-            self.assertEqual(icon_href, f"https://{social}.com/ntiuppsala")
+            self.assertEqual(iconHref, f"https://{social}.com/ntiuppsala")
     
     def test_check_background(self):
         pass
