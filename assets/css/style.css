@@ -28,11 +28,6 @@ header{
   text-align: center;
 }
 
-span{
-  text-decoration: underline;
-  font-weight: bold;
-}
-
 .container{
   width: 100%;
   display: flex;
@@ -49,6 +44,14 @@ span{
   flex-direction: column;
 }
 
+.openHours th {
+  text-align: left;
+}
+
+.openHours td {
+  text-align: right;
+}
+
 .openHours tr{
   font-size: 20px;
 }
@@ -60,6 +63,14 @@ span{
   text-align: center;
   flex-direction: column;
   margin-top: 50px;
+}
+
+.priceAndProducts th {
+  text-align: left;
+}
+
+.priceAndProducts td {
+  text-align: right;
 }
 
 .priceAndProducts tr{
