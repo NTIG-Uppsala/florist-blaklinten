@@ -46,10 +46,12 @@ header{
 
 .openHours th {
   text-align: left;
+  padding: 0 20px;
 }
 
 .openHours td {
   text-align: right;
+  padding: 0 20px;
 }
 
 .openHours tr{
@@ -67,10 +69,12 @@ header{
 
 .priceAndProducts th {
   text-align: left;
+  padding: 0 20px;
 }
 
 .priceAndProducts td {
   text-align: right;
+  padding: 0 20px;
 }
 
 .priceAndProducts tr{
