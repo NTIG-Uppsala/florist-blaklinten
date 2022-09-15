@@ -72,7 +72,7 @@ class CheckWebsite(unittest.TestCase):
     def test_check_background(self):
         self.browser.get(self.website_url)
 
-        my_property = WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".background"))).value_of_css_property("background-image").split('"')[1]
+        my_property = WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".background"))).value_of_css_property("background-image")
         self.assertIn("bg-b.jpg", my_property)
 
     #checks images on the page and if they exists
