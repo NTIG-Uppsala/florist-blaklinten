@@ -98,11 +98,11 @@ class CheckWebsite(unittest.TestCase):
         # Loop over list
         for social in socials:
             # Check if link and icon is on page
-            iconElement =  self.browser.find_element(By.CLASS_NAME, f"fa-{social}")
-            ActionChains(iconElement).move_to_element(iconElement).click()
-            iconHref = iconElement.get_attribute("href")
+            socialElement =  self.browser.find_element(By.CLASS_NAME, f"fa-{social}")
+            ActionChains(socialElement).move_to_element(socialElement).click()
+            socialHref = socialElement.get_attribute("href")
 
-            self.assertEqual(iconHref, f"https://{social}.com/ntiuppsala")
+            self.assertEqual(socialHref, f"https://{social}.com/ntiuppsala")
 
 if __name__ == "__main__":
     CheckWebsite.website_url = sys.argv.pop()
