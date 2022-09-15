@@ -62,6 +62,7 @@ class CheckWebsite(unittest.TestCase):
             "Höstbuket", "400 kr",
             "Rosor 10-pack", "150 kr", 
             "Tulpaner 10-pack", "100 kr", 
+            "Tjänster",
             "Konsultation 30 min", "250 kr"
         ]
 
