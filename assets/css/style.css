@@ -81,6 +81,28 @@ header{
   font-size: 20px;
 }
 
+.services {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.service th {
+  text-align: left;
+  padding: 0 20px;
+}
+
+.service td {
+  text-align: right;
+  padding: 0 20px;
+}
+
+.service tr{
+  font-size: 20px;
+}
 
 .images {
   display: flex;
