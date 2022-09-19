@@ -6,9 +6,7 @@ body,h1,h2,h3,h4,h5,h6{
     font-family: "Arial", sans-serif
 }
 
-.menu{
-    display: none
-}
+
 
 .bgimg {
   background-repeat: no-repeat;
@@ -19,55 +17,32 @@ body,h1,h2,h3,h4,h5,h6{
 }
 
 .container {
-  padding: 0 16px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.test{
+.container h1{
+  text-align: center;
+}
+
+.row{
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 .our-team {
+  display: flex;
+  flex-direction: column;
   padding: 30px 0 40px;
-  margin-bottom: 30px;
-  background-color: #f7f5ec;
   text-align: center;
-  overflow: hidden;
-  position: relative;
-  width: 300px;
-}
-
-.our-team .picture {
-  display: inline-block;
-  height: 130px;
-  width: 130px;
-  margin-bottom: 50px;
-  z-index: 1;
-  position: relative;
-}
-
-.our-team .picture::before {
-  content: "";
-  width: 100%;
-  height: 0;
-  border-radius: 50%;
-  background-color: #1369ce;
-  position: absolute;
-  bottom: 135%;
-  right: 0;
-  left: 0;
-  opacity: 0.9;
-  transform: scale(3);
-  transition: all 0.3s linear 0s;
+  margin: 50px;
 }
 
 .our-team .picture img {
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-  transform: scale(1);
-  transition: all 0.9s ease 0s;
+  width: fit-content;
+  height: 250px;
+  border-radius: 25%;
 }
 
 .our-team .title {
@@ -135,4 +110,14 @@ body,h1,h2,h3,h4,h5,h6{
     font-size: 13px;
     color: white;
     text-decoration: underline;
+  }
+
+  @media screen and (max-width: 1080px) {
+    .row{
+      flex-direction: column;
+    }
+
+    .our-team{
+      margin-bottom: 0;
+    }
   }
