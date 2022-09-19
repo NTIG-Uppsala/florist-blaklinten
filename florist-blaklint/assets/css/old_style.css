@@ -1,0 +1,203 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  scroll-behavior: smooth;
+ }
+
+
+a, li, h1{
+  text-decoration: none;
+  list-style: none;
+  padding: 2px;
+}
+
+.background{
+  height: 70vh;
+  background-image: url("../img/bg-b.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header{
+  font-size: 50px;
+  color: white;
+  text-align: center;
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.openTimes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.openHours th {
+  text-align: left;
+  padding: 0 20px;
+}
+
+.openHours td {
+  text-align: right;
+  padding: 0 20px;
+}
+
+.openHours tr{
+  font-size: 20px;
+}
+
+.products {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.priceAndProducts th {
+  text-align: left;
+  padding: 0 20px;
+}
+
+.priceAndProducts td {
+  text-align: right;
+  padding: 0 20px;
+}
+
+.priceAndProducts tr{
+  font-size: 20px;
+}
+
+.services {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.service th {
+  text-align: left;
+  padding: 0 20px;
+}
+
+.service td {
+  text-align: right;
+  padding: 0 20px;
+}
+
+.service tr{
+  font-size: 20px;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+#bild1 {
+  width: 355px;
+  height: 236px;
+} 
+
+#bild2 {
+  width: 355px;
+  height: 236px;
+} 
+
+#bild3 {
+  width: 355px;
+  height: 236px;
+} 
+
+.contact{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.contact h1{
+  margin-top: 50px;
+  font-size: 25px;
+}
+
+.contact a{
+  color: black;
+  text-decoration: underline;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 75px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 100px;
+}
+
+/* social media */
+.fa {
+  text-align: center;
+  padding: 10px;
+  font-size: 30px;
+  width: 30px;
+  text-decoration: none;
+  margin: 5px 5px;
+  border-radius: 100px;
+  }
+  
+  .fa:hover {
+      opacity: 0.7;
+  }
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
+  
+  .fa-instagram {
+    background: #3c0470;
+    color: white;
+  }
+
+  @media screen and (max-width: 450px){
+    #bild1{
+      width: 266px;
+      height: 177px;
+    }
+    
+    #bild2{
+      width: 266px;
+      height: 177px;
+    }
+
+    #bild3{
+      width: 266px;
+      height: 177px;
+    }
+  }
