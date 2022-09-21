@@ -50,7 +50,6 @@ jobs:
   deploy:
     permissions:
       contents: write
-    needs: [ code_validator, run_tests ] # Wait before running "deploy" until "validate_code" and "run_tests" are done
     runs-on: ubuntu-latest
 
     steps:
