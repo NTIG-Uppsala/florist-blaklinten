@@ -1,166 +1,143 @@
-*{
-  margin: 0;
-  padding: 0;
+body, html{
+    height: 100%;
+    scroll-behavior: smooth;
 }
 
-html{
-  scroll-behavior: smooth;
- }
-
-
-a, li, h1{
-  text-decoration: none;
-  list-style: none;
-  padding: 2px;
+body,h1,h2,h3,h4,h5,h6{
+    font-family: "Arial", sans-serif
 }
 
-.background{
-  height: 70vh;
-  background-image: url("../img/bg-b.jpg");
+
+
+.bgimg {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-image: url("../img/bg-b.jpg");
+  height: 100vh;
 }
 
-header{
-  font-size: 50px;
-  color: white;
-  text-align: center;
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
 }
 
-.container{
+.card{
+  flex: 25%;
+  margin: 15px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+} 
+
+.card img {
   width: 100%;
+  max-height: 200px;
+}
+
+.card .text {
+  padding: 20px 20px 20px;
+}
+
+.serviceCards{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
 }
 
-.openTimes {
+.serviceCard {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   flex-direction: column;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+
 }
 
-.openHours th {
-  text-align: left;
-  padding: 0 20px;
+.serviceCard img {
+  max-width: 100%;
+  max-height: 300px;
 }
 
-.openHours td {
-  text-align: right;
-  padding: 0 20px;
-}
-
-.openHours tr{
-  font-size: 20px;
-}
-
-.products {
+.container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  margin-top: 50px;
-}
-
-.priceAndProducts th {
-  text-align: left;
-  padding: 0 20px;
-}
-
-.priceAndProducts td {
-  text-align: right;
-  padding: 0 20px;
-}
-
-.priceAndProducts tr{
-  font-size: 20px;
-}
-
-.services {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  margin-top: 50px;
-}
-
-.service th {
-  text-align: left;
-  padding: 0 20px;
-}
-
-.service td {
-  text-align: right;
-  padding: 0 20px;
-}
-
-.service tr{
-  font-size: 20px;
-}
-
-.images {
-  display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
 }
 
-#bild1 {
-  width: 355px;
-  height: 236px;
-} 
-
-#bild2 {
-  width: 355px;
-  height: 236px;
-} 
-
-#bild3 {
-  width: 355px;
-  height: 236px;
-} 
-
-.contact{
-  display: flex;
-  flex-direction: column;
+.container h1{
   text-align: center;
 }
 
-.contact h1{
-  margin-top: 50px;
-  font-size: 25px;
-}
-
-.contact a{
-  color: black;
-  text-decoration: underline;
-}
-
-/* footer */
-.footer {
+.row{
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  width: 100%;
-  height: 75px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-top: 100px;
 }
+.our-team {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0 40px;
+  text-align: center;
+  margin: 50px;
+}
+
+.our-team .picture img {
+  width: fit-content;
+  height: auto;
+  border-radius: 25%;
+}
+
+.our-team .title {
+  display: block;
+  font-size: 15px;
+  color: #4e5052;
+  text-transform: capitalize;
+}
+
+.openTimesContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px 0 100px 0;
+  }
+  
+  .openTimes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  .openHours th {
+    text-align: left;
+    padding: 0 20px;
+  }
+  
+  .openHours td {
+    text-align: right;
+    padding: 0 20px;
+  }
+  
+  .openHours tr{
+    font-size: 20px;
+  }
+
+  
+  
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
 /* social media */
 .fa {
   text-align: center;
   padding: 10px;
-  font-size: 30px;
-  width: 30px;
+  font-size: 60px;
+  width: 60px;
   text-decoration: none;
   margin: 5px 5px;
   border-radius: 100px;
@@ -185,19 +162,70 @@ header{
     color: white;
   }
 
-  @media screen and (max-width: 450px){
-    #bild1{
-      width: 266px;
-      height: 177px;
-    }
-    
-    #bild2{
-      width: 266px;
-      height: 177px;
+.contact{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .contact h1{
+    margin-top: 50px;
+    color: white;
+  }
+  
+  .contact a{
+    text-decoration: underline;
+  }
+
+
+
+  @media screen and (max-width: 1080px) {
+    .row{
+      flex-direction: column;
     }
 
-    #bild3{
-      width: 266px;
-      height: 177px;
+    .our-team{
+      margin-bottom: 0;
     }
+  }
+
+  @media screen and (max-width: 900px) {
+    .cards{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+
+    .card{
+      flex: 25%;
+      width: 50%;
+      margin: 15px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+    } 
+
+    
+  }
+
+  @media screen and (max-width: 520px) {
+    .card{
+      flex: 25%;
+      width: 75%;
+      margin: 15px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+    } 
+    
+  }
+
+  @media screen and (max-width: 340px) {
+    .card{
+      flex: 25%;
+      width: 100%;
+      margin: 15px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+    } 
+    
   }
