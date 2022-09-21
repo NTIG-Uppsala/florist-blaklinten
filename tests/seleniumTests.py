@@ -37,43 +37,76 @@ class CheckWebsite(unittest.TestCase):
         logoElement = self.browser.find_element(By.XPATH, "//link[@type='image/x-icon']")
         self.assertIn('favicon-32x32.ico', logoElement.get_attribute("href"))
 
-    # checks that the opentimes are on the website
-    def test_find_text(self):
-        self.browser.get(self.website_url)
-        pageText = self.browser.find_element(By.TAG_NAME, "body").text
+    # # checks that the opentimes are on the website
+    # def test_find_text(self):
+    #     self.browser.get(self.website_url)
+    #     pageText = self.browser.find_element(By.TAG_NAME, "body").text
 
-        controlTexts = [
-            "Florist Blåklinten",
-            "Öppettider",
-            "Måndag","10 - 16",
-            "Tisdag","10 - 16",
-            "Onsdag","10 - 16",
-            "Torsdag","10 - 16",
-            "Fredag","10 - 16",
-            "Lördag","12 - 15",
-            "Söndag","Stängt",
-            "Kontakta oss",
-            "Fjällgatan 32H 981 39 Finspång",
-            "0630-555-555",
-            "info@ntig-uppsala.github.io",
-            "Sommarbuket", "200 kr",
-            "Bröllopsbruketter", "1200 kr",
+    #     controlTexts = [
+    #         "Florist Blåklinten",
+    #         "Öppettider",
+    #         "Måndag","10 - 16",
+    #         "Tisdag","10 - 16",
+    #         "Onsdag","10 - 16",
+    #         "Torsdag","10 - 16",
+    #         "Fredag","10 - 16",
+    #         "Lördag","12 - 15",
+    #         "Söndag","Stängt",
+    #         "Kontakta oss",
+    #         "Fjällgatan 32H 981 39 Finspång",
+    #         "0630-555-555",
+    #         "info@ntig-uppsala.github.io",
+    #         "Sommarbuket", "200 kr",
+    #         "Bröllopsbruketter", "1200 kr",
+    #         "Begravningskrans", "800 kr",
+    #         "Höstbuket", "400 kr",
+    #         "Rosor 10-pack", "150 kr", 
+    #         "Tulpaner 10-pack", "100 kr", 
+    #         "Tjänster",
+    #         "Konsultation 30 min", "250 kr"
+    #     ]
+
+    #     for text in controlTexts:
+    #         self.assertIn(text, pageText)
+
+    def test_check_products(self):
+        self.browser.get(self.website_url)
+
+        productText = self.browser.find_element(By.CLASS_NAME, "cards").text
+
+        products = [
+            "Bröllopsbukett", "1200 kr",
             "Begravningskrans", "800 kr",
-            "Höstbuket", "400 kr",
+            "Höstbukett", "400 kr",
+            "Sommarbukett", "200 kr",
             "Rosor 10-pack", "150 kr", 
             "Tulpaner 10-pack", "100 kr", 
-            "Tjänster",
-            "Konsultation 30 min", "250 kr"
         ]
 
-        for text in controlTexts:
-            self.assertIn(text, pageText)
+        for product in products:
+            self.assertIn(product, productText)
+
+    # checks for open hours
+    def test_check_openTimes(self):
+        self.browser.get(self.website_url)
+
+        openHourText = self.browser.find_element(By.CLASS_NAME, "openHours").text
+
+        openHours = [
+            "Vardagar", "10 - 16",
+            "Lördag", "12 - 15",
+            "Söndag", "Stängt"
+        ]
+
+        for hours in openHours:
+            self.assertIn(hours, openHourText)
+
 
     #checks background image
     def test_check_background(self):
         self.browser.get(self.website_url)
 
-        my_property = WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".background"))).value_of_css_property("background-image")
+        my_property = WebDriverWait(self.browser, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".bgimg"))).value_of_css_property("background-image")
         self.assertIn("bg-b.jpg", my_property)
 
     #checks images on the page and if they exists
