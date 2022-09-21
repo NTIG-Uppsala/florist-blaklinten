@@ -18,12 +18,15 @@
 <body>
 
 <!-- Navbar (sit on top) -->
-<div class="w3-top w3-hide-small">
+<div class="w3-top">
   <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
-    <a href="#" class="w3-bar-item w3-button">HEM</a>
-    <a href="#products" class="w3-bar-item w3-button">PRODUKTER</a>
-    <a href="#services" class="w3-bar-item w3-button">TJÄNSTER</a>
-    <a href="#team" class="w3-bar-item w3-button">PERSONAL</a>
+    <a href="#home" class="w3-bar-item w3-button w3-wide">FLORIST BLÅKLINTEN</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#products" class="w3-bar-item w3-button"> PRODUKTER</a>
+      <a href="#services" class="w3-bar-item w3-button"> TJÄNSTER</a>
+      <a href="#team" class="w3-bar-item w3-button">PERSONAL</a>
+    </div>
   </div>
 </div>
   
@@ -42,42 +45,42 @@
     <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Produkter</h1>
     <div class="w3-row w3-center">
       <main class="cards">
-        <article class="card w3-white">
+        <article class="card w3-light-grey">
           <img src="assets/img/brollopsblommor.jpg" alt="Bröllopsbukett">
           <div class="text">
             <h3 class="w3-bold">Bröllopsbukett</h3>
             <p class="w3-italic w3-text-grey">1200 kr</p>
           </div>
         </article>
-        <article class="card w3-white">
+        <article class="card w3-light-grey">
           <img src="assets/img/krans.jpg" alt="Begravningskrans">
           <div class="text">
             <h3 class="w3-bold">Begravningskrans</h3>
             <p class="w3-italic w3-text-grey">800 kr</p>
           </div>
         </article>
-        <article class="card w3-white">
+        <article class="card w3-light-grey">
           <img src="assets/img/hostbukett.jpg" alt="Höstbukett">
           <div class="text">
             <h3 class="w3-bold">Höstbukett</h3>
             <p class="w3-italic w3-text-grey">400 kr</p>
           </div>
         </article>
-        <article class="card w3-white">
+        <article class="card w3-light-grey">
           <img src="assets/img/sommarbukett.jpg" alt="Sommarbukett">
           <div class="text">
             <h3 class="w3-bold">Sommarbukett</h3>
             <p class="w3-italic w3-text-grey">200 kr</p>
           </div>
         </article>
-        <article class="card w3-white">
+        <article class="card w3-light-grey">
           <img src="assets/img/rosor.jpg" alt="Rosor 10-pack">
           <div class="text">
             <h3 class="w3-bold">Rosor <br> 10-pack</h3>
             <p class="w3-italic w3-text-grey">150 kr</p>
           </div>
         </article>
-        <article class="card w3-white">
+        <article class="card w3-light-grey">
           <img src="assets/img/tulpaner.jpg" alt="Tulpaner 10-pack">
           <div class="text">
             <h3 class="w3-bold">Tulpaner <br> 10-pack</h3>
@@ -90,12 +93,12 @@
 </div>
 
 <!-- Services -->
-<div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge" id="services">
+<div class="w3-container w3-padding-64 w3-grey-purple w3-grayscale-min w3-xlarge" id="services">
   <div class="w3-content">
     <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Tjänster</h1>
     <div class="w3-row w3-center">
       <article class="serviceCards">
-        <div class="serviceCard w3-white">
+        <div class="serviceCard w3-light-grey">
           <img src="assets/img/tulpaner.jpg" alt="Tulpaner 10-pack">
           <div class="text w3-xlarge">
             <h3 class="w3-bold">Konsultation 30 minuter</h3>
@@ -108,7 +111,7 @@
 </div>
 
 <!-- Team Container -->
-<div class="container w3-padding-64" id="team">
+<div class="container w3-padding-64 w3-light-grey" id="team">
   <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Vår personal</h1>
   <div class="row">
     <div class="our-team">
@@ -137,33 +140,28 @@
           </div>
         </div>
     </div>
-</div>
-<div class="openTimesContainer">
-    <div class="openTimes">
-        <h1 class="w3-jumbo">Öppettider</h1>
+    <div class="openTimesContainer">
+      <div class="openTimes">
+          <h1 class="w3-jumbo">Öppettider</h1>
+      </div>
+          <table class="openHours">
+          <tr>
+              <th>Vardagar</th>
+              <td></td>
+              <td>10 - 16</td>
+          </tr>
+          <tr>
+              <th>Lördag</th>
+              <td></td>
+              <td>12 - 15</td>
+          </tr>
+          <tr>
+              <th>Söndag</th>
+              <td></td>
+              <td>Stängt</td>
+          </tr>
+          </table>
     </div>
-        <table class="openHours">
-        <tr>
-            <th>Vardagar</th>
-            <td></td>
-            <td>10 - 16</td>
-        </tr>
-        <tr>
-            <th>Lördag</th>
-            <td></td>
-            <td>12 - 15</td>
-        </tr>
-        <tr>
-            <th>Söndag</th>
-            <td></td>
-            <td>Stängt</td>
-        </tr>
-        </table>
-  </div>
-
-<!-- Contact -->
-<div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge">
-
 </div>
 
 <!-- Footer -->
