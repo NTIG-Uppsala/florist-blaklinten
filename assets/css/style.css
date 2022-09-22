@@ -272,20 +272,20 @@ body,h1,h2,h3,h4,h5,h6{
 }
 
 .contact {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
   
   .contact h1 {
-    margin-top: 50px;
-    color: white;
+  margin-top: 50px;
+  color: white;
 }
   
-  .contact a {
-    text-decoration: underline;
+.contact a {
+  text-decoration: underline;
 }
-
 
   /* media queries */
 
