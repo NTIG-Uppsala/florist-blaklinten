@@ -4,7 +4,7 @@
 ## Florist Blåklint Website
 I detta projekt kommer vi att skapa en hemsida för ett floristföretag.
 
-[Website](https://ntig-uppsala.github.io/florist-blaklinten/florist-blaklint/)
+[Website](https://ntig-uppsala.github.io/florist-blaklinten/)
 
 
 ## DoD
