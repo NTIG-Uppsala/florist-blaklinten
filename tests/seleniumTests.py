@@ -37,6 +37,29 @@ class CheckWebsite(unittest.TestCase):
         logoElement = self.browser.find_element(By.XPATH, "//link[@type='image/x-icon']")
         self.assertIn('favicon-32x32.ico', logoElement.get_attribute("href"))
 
+    # checks for empty links
+    def test_check_for_empty_links(self):
+        self.browser.get(self.website_url)
+
+        links = self.browser.find_elements(By.TAG_NAME, "a")
+
+        for link in links:
+            self.assertNotEqual(link.get_attribute("href").split("/")[-1], "#")
+
+    def test_click_menu_links(self):
+        self.browser.get(self.website_url)
+
+        navigation = self.browser.find_element(By.TAG_NAME, "nav")
+        links = navigation.find_elements(By.TAG_NAME, "a")
+        required_links = [
+            "#home",
+            "#products",
+            "#services",
+            "#team"
+        ]
+        for link in required_links:
+            self.assertIn(link, [link.get_attribute("href").split('/')[-1] for link in links])
+
     # checks for important information on the website
     def test_check_info_on_page(self):
         self.browser.get(self.website_url)
@@ -97,7 +120,7 @@ class CheckWebsite(unittest.TestCase):
             self.assertIn(sourceImage, imageNames)
 
     # checks the links and clicks on them and compares it with "current_url"
-    def test_click_links_on_page(self):
+    def test_click_socal_links(self):
         self.browser.get(self.website_url)
 
         # List of social medias
