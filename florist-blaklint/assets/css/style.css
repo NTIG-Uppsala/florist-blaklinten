@@ -7,6 +7,110 @@ body,h1,h2,h3,h4,h5,h6{
     font-family: "Century Gothic", sans-serif
 }
 
+/* header */
+
+.header {
+  box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+}
+
+.header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+.header li a {
+  display: block;
+  padding: 20px 20px;
+  text-decoration: none;
+}
+
+
+.header .headerTitle {
+  display: block;
+  float: left;
+  font-size: 25px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+/* menu */
+
+.header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+.header .menu-icon {
+  float: right;
+  cursor: pointer;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.header .menu-icon .navicon {
+  background: rgb(255, 255, 255);
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+  background: rgb(255, 255, 255);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.header .menu-btn {
+  display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+  max-height: 240px;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+/* animation of menu button */
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
 
 
 .bgimg {
@@ -17,6 +121,7 @@ body,h1,h2,h3,h4,h5,h6{
   height: 100vh;
 }
 
+/* products */
 .cards{
   display: flex;
   flex-wrap: wrap;
@@ -39,6 +144,7 @@ body,h1,h2,h3,h4,h5,h6{
   padding: 20px 20px 20px;
 }
 
+/* services */
 .serviceCards{
   display: flex;
   flex-direction: column;
@@ -68,11 +174,13 @@ body,h1,h2,h3,h4,h5,h6{
   text-align: center;
 }
 
+/* team */
 .row{
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+
 .our-team {
   display: flex;
   flex-direction: column;
@@ -94,6 +202,7 @@ body,h1,h2,h3,h4,h5,h6{
   text-transform: capitalize;
 }
 
+/* open times */
 .openTimesContainer{
     width: 100%;
     display: flex;
@@ -178,6 +287,24 @@ body,h1,h2,h3,h4,h5,h6{
   }
 
 
+  /* media queries */
+
+  @media (min-width: 760px) {
+    .header li {
+      float: left;
+    }
+    .header li a {
+      padding: 20px 30px;
+    }
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  }
 
   @media screen and (max-width: 1080px) {
     .row{
@@ -227,5 +354,4 @@ body,h1,h2,h3,h4,h5,h6{
       border: 1px solid #ccc;
       box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
     } 
-    
   }
