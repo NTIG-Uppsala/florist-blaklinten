@@ -31,13 +31,13 @@ class CheckWebsite(unittest.TestCase):
     def test_page_title(self):
         self.driver.get(self.website_url)
         title = self.driver.title
-        assert title == "Florist Blåklinten"
+        self.assertIn(title, "Florist Blåklinten")
 
     def test_check_logo(self):
         self.driver.get(self.website_url)
 
         logoElement = self.driver.find_element(By.XPATH, "//link[@type='image/x-icon']")
-        self.assertIn('favicon-32x32.ico', logoElement.get_attribute("href"))
+        self.assertIn('favicon.ico', logoElement.get_attribute("href"))
 
     # checks for empty links
     def test_check_for_empty_links(self):
