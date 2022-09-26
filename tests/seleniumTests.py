@@ -1,6 +1,7 @@
 import unittest
 import os
 import sys
+from pathlib import Path
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
@@ -118,6 +119,16 @@ class CheckWebsite(unittest.TestCase):
             sourceImage = os.path.basename(os.path.normpath(source))
             print(sourceImage)
             self.assertIn(sourceImage, imageNames)
+
+    def test_for_large_images(self):
+        images = Path(__file__).resolve().parents[1] / Path('florist-blaklint/assets/images/')
+        # Assert check for images larger than 1Mb
+        for image in images.glob('**/*.*'):
+            # Get the file size property
+            image_size = Path(image).stat().st_size
+            print("Image path: {} \t image size: {}".format(image, image_size))
+            # Assert if the file is greater than 500kb
+            self.assertGreater(500_000, image_size)
 
     # checks the links and clicks on them and compares it with "current_url"
     def test_click_socal_links(self):
