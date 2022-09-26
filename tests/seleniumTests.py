@@ -46,8 +46,9 @@ class CheckWebsite(unittest.TestCase):
 
         for link in links:
             self.assertNotEqual(link.get_attribute("href").split("/")[-1], "#")
+            self.assertIsNotNone(link.get_attribute("href"))
 
-    def test_click_menu_links(self):
+    def test_menu_links(self):
         self.browser.get(self.website_url)
 
         navigation = self.browser.find_element(By.TAG_NAME, "nav")
@@ -65,9 +66,15 @@ class CheckWebsite(unittest.TestCase):
     def test_check_info_on_page(self):
         self.browser.get(self.website_url)
 
-        openHourText = self.browser.find_element(By.CLASS_NAME, "openHours").text
-        serviceText = self.browser.find_element(By.CLASS_NAME, "serviceCards").text
-        productText = self.browser.find_element(By.CLASS_NAME, "cards").text
+        headerText = self.browser.find_element(By.ID, "home").text.replace("\n", " ")
+        openHourText = self.browser.find_element(By.CLASS_NAME, "openHours").text.replace("\n", " ")
+        serviceText = self.browser.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
+        productText = self.browser.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
+
+        header = [
+            "Välkommen till Florist Blåklinten",
+            "Ring oss på 0630-555-555 för frågor eller beställning",
+        ]
 
         products = [
             "Bröllopsbukett", "1200 kr",
@@ -87,6 +94,10 @@ class CheckWebsite(unittest.TestCase):
             "Lördag", "12 - 15",
             "Söndag", "Stängt"
         ]
+
+        for text in header:
+            self.assertIn(text, headerText)
+        print("Header text found")
         
         for hours in openHours:
             self.assertIn(hours, openHourText)
@@ -131,7 +142,7 @@ class CheckWebsite(unittest.TestCase):
             self.assertGreater(500_000, image_size)
 
     # checks the links and clicks on them and compares it with "current_url"
-    def test_click_socal_links(self):
+    def test_social_links(self):
         self.browser.get(self.website_url)
 
         # List of social medias
@@ -147,5 +158,10 @@ class CheckWebsite(unittest.TestCase):
             self.assertEqual(socialHref, f"https://{social}.com/ntiuppsala")
 
 if __name__ == "__main__":
-    CheckWebsite.website_url = sys.argv.pop()
+    if len(sys.argv) > 1:
+        CheckWebsite.website_url = sys.argv.pop()
+    else:
+        CheckWebsite.website_url = "http://localhost:5500/florist-blaklint/"
+
     unittest.main(verbosity=2)
+    
