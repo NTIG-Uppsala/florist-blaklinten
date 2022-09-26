@@ -289,7 +289,7 @@ body,h1,h2,h3,h4,h5,h6{
 
   /* media queries */
 
-  @media (min-width: 760px) {
+  @media (min-width: 850px) {
     .header li {
       float: left;
     }
