@@ -165,8 +165,6 @@ class CheckWebsite(unittest.TestCase):
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         CheckWebsite.website_url = sys.argv.pop()
-    else:
-        CheckWebsite.website_url = "http://localhost:5500/florist-blaklint/"
 
     unittest.main(verbosity=2)
     
