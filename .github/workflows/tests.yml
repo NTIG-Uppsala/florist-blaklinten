@@ -42,9 +42,10 @@ jobs:
         if [ -f tests/test_requirements.txt ]; then pip install -r tests/test_requirements.txt; fi
     - name: start live server # Start a live-server for testing the webpage content
       run: |
+        cd florist-blaklint/
         python -m http.server & 
     - name: Run Tests scripts on localhost
-      run: python tests/seleniumTests.py http://localhost:8000/florist-blaklint/
+      run: python tests/seleniumTests.py http://localhost:8000/
 
   deploy:
     permissions:
