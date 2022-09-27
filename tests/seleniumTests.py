@@ -75,7 +75,7 @@ class CheckWebsite(unittest.TestCase):
 
         header = [
             "Välkommen till Florist Blåklinten",
-            "Ring oss på 0630-555-555 för frågor eller beställning",
+            "För frågor eller beställningar ring oss på 0630-555-555 ",
         ]
 
         products = [
