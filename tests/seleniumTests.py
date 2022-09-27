@@ -62,6 +62,75 @@ class CheckWebsite(unittest.TestCase):
         ]
         for link in required_links:
             self.assertIn(link, [link.get_attribute("href").split('/')[-1] for link in links])
+    
+    def test_check_info_ukranian(self):
+        self.driver.get(self.website_url + "index-ua.html")
+
+        headerText = self.driver.find_element(By.ID, "home").text.replace("\n", " ")
+        openHourText = self.driver.find_element(By.CLASS_NAME, "openHours").text.replace("\n", " ")
+        serviceText = self.driver.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
+        productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
+        teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
+
+        header = [
+            "Ласкаво просимо до Florist Blåklinten",
+            "Для питань чи замовлень зателефонуйте нам 0630-555-555",
+        ]
+
+        products = [
+            "Весільний букет", "1200 kr",
+            "Похоронний вінок", "800 kr",
+            "Осінній букет", "400 kr",
+            "Літній букет", "200 kr",
+            "троянди 10 шт", "150 kr", 
+            "Тюльпани 10 шт", "100 kr", 
+        ]
+
+        services = [
+            "Консультація 30 хв", "250 kr"
+        ]
+
+        openHours = [
+            "будні дні", "10 - 16",
+            "Субота", "12 - 15",
+            "неділя", "Зачинено"
+        ]
+
+        team = [
+            "Наш персонал",
+            "Ласкаво просимо до нас у Florist Blåklinten! Ми є згуртованою групою з різними експертними навичками, які можуть допомогти вам найкращим чином відповідно до ваших потреб.",
+            "Örjan Johansson",
+            "Флорист",
+            "Якщо вам потрібен букет, будь то на весілля, день народження чи щось зовсім інше, я можу допомогти вам скласти букет на основі ваших побажань.",
+            "Anna Pettersson",
+            "Хортолог",
+            "Я кваліфікований садівник і можу допомогти вам або вашій компанії зробити найкращий вибір, виходячи з ваших потреб та умов щодо фруктових дерев, овочівництва та декоративних рослин.",
+            "Fredrik Örtqvist",
+            "Власник",
+            "Моя любов до квітів заклала основу для існування Florist Blåklinten сьогодні, і я сподіваюся, що ви як клієнт можете надихнутися в нашому магазині."
+        ]
+
+        for text in header:
+            self.assertIn(text, headerText)
+        print("Header text found")
+        
+        for hours in openHours:
+            self.assertIn(hours, openHourText)
+        print("Open hours found")
+
+        for service in services:
+            self.assertIn(service, serviceText)
+        print("Services found")
+
+        for product in products:
+            self.assertIn(product, productText)
+        print("Products found")
+
+        for text in team:
+            self.assertIn(text, teamText)
+        print("Team text found")
+
+
 
     # checks for important information on the website
     def test_check_info_on_page(self):
