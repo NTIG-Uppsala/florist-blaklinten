@@ -63,6 +63,21 @@ class CheckWebsite(unittest.TestCase):
         for link in required_links:
             self.assertIn(link, [link.get_attribute("href").split('/')[-1] for link in links])
     
+    def test_flag_links(self):
+        self.driver.get(self.website_url)
+
+        navigation = self.driver.find_element(By.TAG_NAME, "nav")
+        links = navigation.find_elements(By.TAG_NAME, "a")
+        
+        self.assertIn("index-ua.html", [link.get_attribute("href").split('/')[-1] for link in links])
+
+        self.driver.get(self.website_url + "index-ua.html")
+        
+        navigation = self.driver.find_element(By.TAG_NAME, "nav")
+        links = navigation.find_elements(By.TAG_NAME, "a")
+
+        self.assertIn("index.html", [link.get_attribute("href").split('/')[-1] for link in links])
+
     def test_check_info_ukranian(self):
         self.driver.get(self.website_url + "index-ua.html")
 
