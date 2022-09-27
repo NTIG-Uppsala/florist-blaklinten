@@ -175,6 +175,30 @@ body,h1,h2,h3,h4,h5,h6{
 }
 
 /* team */
+.team-intro {
+  font-size: 20px;
+  text-align: center;
+  width: 450px;
+  margin: 0;
+}
+
+.team-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.team-job {
+  text-align: center;
+  font-weight: 600;
+}
+
+.team-text {
+  font-size: 15px;
+  width: 200px;
+  text-align: left;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -313,6 +337,7 @@ body,h1,h2,h3,h4,h5,h6{
 
     .our-team {
       margin-bottom: 0;
+      margin: 15px;
     }
   }
 
@@ -338,8 +363,28 @@ body,h1,h2,h3,h4,h5,h6{
     
   }
 
+  @media screen and (max-width: 455px) {
+    .team-intro {
+      font-size: 10px;
+      width: 100%;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    .team-title {
+      font-size: 15px;
+    }
+
+    .team-text {
+      font-size: 10px;
+    }
+  }
   @media screen and (max-width: 340px) {
     .card {
       width: 100%;
     } 
+
+    .header .headerTitle {
+      font-size: 20px;
+    }
   }
