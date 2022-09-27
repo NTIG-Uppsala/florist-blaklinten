@@ -234,6 +234,7 @@ class CheckWebsite(unittest.TestCase):
             # if the img has a src attribute with a image
             if image.get_attribute('src') is not None:
                 # Assert that the image source is fetchable from the server ( < 400 )
+                print("Checking {}".format(image_source))
                 self.assertLess(requests.get(image_source).status_code, 400)
             else:  # assert False (Just a fail)
                 self.assertTrue(False)
