@@ -365,18 +365,16 @@ body,h1,h2,h3,h4,h5,h6{
 
   @media screen and (max-width: 455px) {
     .team-intro {
-      font-size: 10px;
-      width: 100%;
-      margin-left: 5px;
-      margin-right: 5px;
+      font-size: 15px;
+      width: 75%;
     }
 
     .team-title {
-      font-size: 15px;
+      font-size: 25px;
     }
 
     .team-text {
-      font-size: 10px;
+      font-size: 15px;
     }
   }
   @media screen and (max-width: 340px) {
