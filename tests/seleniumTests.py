@@ -71,6 +71,7 @@ class CheckWebsite(unittest.TestCase):
         openHourText = self.driver.find_element(By.CLASS_NAME, "openHours").text.replace("\n", " ")
         serviceText = self.driver.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
         productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
+        teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
 
         header = [
             "Välkommen till Florist Blåklinten",
@@ -96,6 +97,20 @@ class CheckWebsite(unittest.TestCase):
             "Söndag", "Stängt"
         ]
 
+        team = [
+            "Vår personal",
+            "Välkommen till oss på Floristgården! Vi är ett sammansvetsat gäng med olika expertkompetenser som därmed kan hjälpa dig på bästa sätt utifrån dina behov.",
+            "Örjan Johansson",
+            "Florist",
+            "Om du behöver en bukett, oavsett om det är till bröllop, födelsedagsfirande eller något helt annat kan jag hjälpa dig att komponera buketten utifrån dina önskemål.",
+            "Anna Pettersson",
+            "Hortonom",
+            "Jag är utbildad hortonom och kan hjälpa dig eller ditt företag att göra det bästa valet utifrån dina behov och förutsättningar vad det gäller fruktträd, grönsaksodling och prydnadsväxter.",
+            "Fredrik Örtqvist",
+            "Ägare",
+            "Min kärlek till blommor lade grunden till att Floristgården finns idag och jag hoppas att du som kund kan inspireras i vår butik."
+        ]
+
         for text in header:
             self.assertIn(text, headerText)
         print("Header text found")
@@ -111,6 +126,10 @@ class CheckWebsite(unittest.TestCase):
         for product in products:
             self.assertIn(product, productText)
         print("Products found")
+
+        for text in team:
+            self.assertIn(text, teamText)
+        print("Team text found")
 
     # checks background image
     def test_check_background(self):
