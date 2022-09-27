@@ -312,7 +312,6 @@ body,h1,h2,h3,h4,h5,h6{
 }
 
   /* media queries */
-
   @media screen and (max-width: 1080px) {
     .row {
       flex-direction: column;
@@ -324,20 +323,20 @@ body,h1,h2,h3,h4,h5,h6{
     }
   }
 
-  @media (min-width: 910px) {
+  @media screen and (min-width: 1080px) {
     .header li {
-      float: left;
+        float: left;
     }
     .header li a {
-      padding: 20px 30px;
+        padding: 20px 30px;
     }
     .header .menu {
-      clear: none;
-      float: right;
-      max-height: none;
+        clear: none;
+        float: right;
+        max-height: none;
     }
     .header .menu-icon {
-      display: none;
+        display: none;
     }
   }
 
@@ -385,4 +384,4 @@ body,h1,h2,h3,h4,h5,h6{
     .header .headerTitle {
       font-size: 20px;
     }
-  }
+  }s
