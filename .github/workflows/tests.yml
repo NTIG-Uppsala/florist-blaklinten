@@ -45,7 +45,7 @@ jobs:
         cd florist-blaklint/
         python -m http.server & 
     - name: Run Tests scripts on localhost
-      run: python tests/seleniumTests.py http://localhost:8000
+      run: python tests/seleniumTests.py http://localhost:8000/
 
   deploy:
     permissions:
