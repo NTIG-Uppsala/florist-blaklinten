@@ -99,7 +99,7 @@ class CheckWebsite(unittest.TestCase):
 
         team = [
             "Vår personal",
-            "Välkommen till oss på Floristgården! Vi är ett sammansvetsat gäng med olika expertkompetenser som därmed kan hjälpa dig på bästa sätt utifrån dina behov.",
+            "Välkommen till oss på Florist Blåklinten! Vi är ett sammansvetsat gäng med olika expertkompetenser som därmed kan hjälpa dig på bästa sätt utifrån dina behov.",
             "Örjan Johansson",
             "Florist",
             "Om du behöver en bukett, oavsett om det är till bröllop, födelsedagsfirande eller något helt annat kan jag hjälpa dig att komponera buketten utifrån dina önskemål.",
@@ -108,7 +108,7 @@ class CheckWebsite(unittest.TestCase):
             "Jag är utbildad hortonom och kan hjälpa dig eller ditt företag att göra det bästa valet utifrån dina behov och förutsättningar vad det gäller fruktträd, grönsaksodling och prydnadsväxter.",
             "Fredrik Örtqvist",
             "Ägare",
-            "Min kärlek till blommor lade grunden till att Floristgården finns idag och jag hoppas att du som kund kan inspireras i vår butik."
+            "Min kärlek till blommor lade grunden till att Florist Blåklinten finns idag och jag hoppas att du som kund kan inspireras i vår butik."
         ]
 
         for text in header:
