@@ -2,9 +2,9 @@
   "name": "frisor-saxe",
   "version": "1.0.0",
   "description": "![Tests](https://github.com/NTIG-Uppsala/Frisor-Saxe/actions/workflows/tests.yml/badge.svg)",
-  "main": "test/screenshot.js",
+  "main": "tests/screenshot.js",
   "directories": {
-    "test": "test"
+    "test": "tests"
   },
   "scripts": {
     "takescreenshots": "node test/screenshot.js"
