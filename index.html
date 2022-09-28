@@ -49,6 +49,7 @@
   <div class="openTimesContainer">
     <div class="openTimes">
         <h1 class="w3-jumbo">Öppettider</h1>
+        <p id="live-openhours"></p>
     </div>
         <table class="openHours">
         <tr>
@@ -202,6 +203,69 @@
     <a class="fa fa-instagram" href="https://instagram.com/ntiuppsala"></a>
   
 </footer>
+
+<script>
+  openhours = {
+    "weekdays": {
+      "open": 10,
+      "close": 16
+    },
+    "saturday": {
+      "open": 12,
+      "close": 15
+    },
+    "sunday": {
+      "open": "Closed",
+      "close": "Closed"
+    }
+  }
+
+  openhour_element = document.querySelector('#live-openhours');
+
+  const current_date = new Date();
+  const current_day = current_date.getDay();
+  const current_hour = current_date.getHours();
+
+  if (current_day == 0) 
+  {
+    openhour_element.innerText = "Vi har stängt idag";
+  }
+  else if (current_day == 6) 
+  {
+    if (current_hour >= openhours.saturday.open && current_hour < openhours.saturday.close) 
+    {
+        openhour_element.innerText = "Vi har öppet till klockan 15";
+    }
+    else if (current_hour >= openhours.saturday.close) {
+        openhour_element.innerText = "Vi öppnar igen på Måndag klockan 10";
+    }
+    else
+    {
+      openhour_element.innerText = "Vi öppnar klockan 12 idag";
+    }
+  }
+  else if (current_day >= 1 && current_day <= 5) 
+  {
+    if (current_hour >= openhours.weekdays.open && current_hour < openhours.weekdays.close) 
+    {
+      openhour_element.innerText = "Vi har öppet till klockan 16";
+    }
+    else if (current_hour >= openhours.weekdays.close) {
+      if (current_day + 1 == 6) {
+        openhour_element.innerText = "Vi öppnar klockan 12 imorgon";
+      }
+      else {
+        openhour_element.innerText = "Vi öppnar klockan 10 imorgon";
+      }
+    }
+    else
+    {
+      openhour_element.innerText = "Vi öppnar klockan 10 idag";
+    }
+  }
+
+
+</script>
 
 </body>
 </html>
