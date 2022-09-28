@@ -259,7 +259,39 @@ body,h1,h2,h3,h4,h5,h6{
   font-size: 20px;
 }
 
+/* closing days */
+.closingDaysContainer{
+  color: #f1f1f1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 0;
+  background-color:rgb(149, 145, 183);
+}
 
+.closingDays {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.holidays th {
+  text-align: left;
+  padding: 0 20px;
+}
+
+.holidays td {
+  text-align: right;
+  padding: 0 20px;
+}
+
+.holidays tr {
+  font-size: 20px;
+}
 
 .container::after, .row::after {
   content: "";
@@ -373,6 +405,10 @@ body,h1,h2,h3,h4,h5,h6{
     }
 
     .team-text {
+      font-size: 15px;
+    }
+
+    .holidays tr {
       font-size: 15px;
     }
   }

@@ -127,6 +127,7 @@ class CheckWebsite(unittest.TestCase):
         ]
 
         closedDays = [
+            "Вихідні дні",
             "Новий рік",
             "1 січня",
             "Тринадцятий день Різдва",
