@@ -156,6 +156,7 @@ class CheckWebsite(unittest.TestCase):
         serviceText = self.driver.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
         productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
         teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
+        closedDaysText = self.driver.find_element(By.ID, "closedDays").text.replace("\n", " ")
 
         header = [
             "Florist Blåklinten",
@@ -195,6 +196,25 @@ class CheckWebsite(unittest.TestCase):
             "Min kärlek till blommor lade grunden till att Florist Blåklinten finns idag och jag hoppas att du som kund kan inspireras i vår butik."
         ]
 
+        closedDays = [
+            "Nyårsdagen",
+            "1 Januari",
+            "Trettondedag jul",
+            "6 Januari",
+            "Första maj",
+            "1 Maj",
+            "Sveriges nationaldag",
+            "6 Juni",
+            "Julafton",
+            "24 December",
+            "Juldagen",
+            "25 December",
+            "Annandag jul",
+            "26 December",
+            "Nyårsafton",
+            "31 December",
+        ]
+
         for text in header:
             self.assertIn(text, headerText)
         print("Header text found")
@@ -214,6 +234,10 @@ class CheckWebsite(unittest.TestCase):
         for text in team:
             self.assertIn(text, teamText)
         print("Team text found")
+
+        for text in closedDays:
+            self.assertIn(text, closedDaysText)
+        print("Closed days text found")
 
     # checks background image
     def test_check_background(self):
