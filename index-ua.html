@@ -37,10 +37,10 @@
 <!-- Header with image -->
 <header class="bgimg w3-display-container w3-grayscale-min" id="home">
   <div class="w3-display-middle w3-center" style="background-color: rgba(0, 0, 0, 0.4); padding: 30px;">
-    <span class="w3-text-white w3-hide-small" style="font-size:90px;">Вітаю до<br>Florist Blåklinten</span>
-    <span class="w3-text-white w3-hide-large w3-hide-medium" style="font-size:40px"><b>Вітаю просимо до<br>Florist Blåklinten</b></span>
-    <span class="w3-text-white w3-hide-small" style="font-size:40px"><b><br>Для питань чи замовлень<br>зателефонуйте нам 0630-555-555</b></span>
-    <span class="w3-text-white w3-hide-large w3-hide-medium" style="font-size:20px"><b><br>Для питань чи замовлень<br>зателефонуйте нам 0630-555-555</b></span>
+    <span class="w3-text-white w3-hide-small" style="font-size:90px;">Florist Blåklinten</span>
+    <span class="w3-text-white w3-hide-large w3-hide-medium" style="font-size:40px"><b>Florist Blåklinten</b></span>
+    <span class="w3-text-white w3-hide-small" style="font-size:40px"><b><br>Телефонуйте нам 0630-555-555</b></span>
+    <span class="w3-text-white w3-hide-large w3-hide-medium" style="font-size:20px"><b><br>Телефонуйте нам 0630-555-555</b></span>
     <p><a href="#products" class="w3-product-button w3-large w3-white">Переглянути продукти</a></p>
   </div>
 </header>
@@ -49,6 +49,7 @@
   <div class="openTimesContainer">
     <div class="openTimes">
         <h1 class="w3-jumbo">Робочий час</h1>
+        <p id="live-openhours"></p>
     </div>
         <table class="openHours">
         <tr>
@@ -203,5 +204,75 @@
   
 </footer>
 
+<script>
+   openhours = {
+    "weekdays": {
+      "open": 10,
+      "close": 16
+    },
+    "saturday": {
+      "open": 12,
+      "close": 15
+    },
+    "sunday": {
+      "open": "Closed",
+      "close": "Closed"
+    }
+  }
+
+  openhour_element = document.querySelector('#live-openhours');
+
+  const current_date = new Date();
+  const current_day = current_date.getDay();
+  const current_hour = current_date.getHours();
+  const current_minute = current_date.getMinutes();
+
+  if (current_day == 0) 
+  {
+    openhour_element.innerText = "Ми закриті на день";
+  }
+  else if (current_day == 6) 
+  {   
+    if ((current_hour == ( openhours.saturday.close - 1)) && current_minute >= 30) 
+    {
+      openhour_element.innerText = "Ми скоро зачиняємося";
+    }
+    else if (current_hour >= openhours.saturday.open && current_hour < openhours.saturday.close) 
+    {
+        openhour_element.innerText = "Ми працюємо до 15";
+    }
+    else if (current_hour >= openhours.saturday.close) {
+        openhour_element.innerText = "Ми знову відкриваємось у понеділок о 10";
+    }
+    else
+    {
+      openhour_element.innerText = "Сьогодні ми відкриваємо о 12 годині";
+    }
+  }
+  else if (current_day >= 1 && current_day <= 5) 
+  {
+
+    if ((current_hour == (openhours.weekdays.close - 1)) && current_minute >= 30) 
+    {
+      openhour_element.innerText = "Ми скоро зачиняємося";
+    }
+    else if (current_hour >= openhours.weekdays.open && current_hour < openhours.weekdays.close) 
+    {
+      openhour_element.innerText = "Ми працюємо до 16";
+    }
+    else if (current_hour >= openhours.weekdays.close) {
+      if (current_day + 1 == 6) {
+        openhour_element.innerText = "Ми відкриваємось завтра о 12";
+      }
+      else {
+        openhour_element.innerText = "Ми відкриваємось завтра о 10";
+      }
+    }
+    else
+    {
+      openhour_element.innerText = "Ми відкриваємось сьогодні о 10";
+    }
+  }
+</script>
 </body>
 </html>
