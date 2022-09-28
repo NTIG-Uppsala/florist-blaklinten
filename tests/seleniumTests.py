@@ -88,8 +88,8 @@ class CheckWebsite(unittest.TestCase):
         teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
 
         header = [
-            "Вітаю до Florist Blåklinten",
-            "Для питань чи замовлень зателефонуйте нам 0630-555-555",
+            "Florist Blåklinten",
+            "Телефонуйте нам 0630-555-555",
         ]
 
         products = [
@@ -158,8 +158,8 @@ class CheckWebsite(unittest.TestCase):
         teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
 
         header = [
-            "Välkommen till Florist Blåklinten",
-            "För frågor eller beställningar ring oss på 0630-555-555 ",
+            "Florist Blåklinten",
+            "Ring oss på 0630-555-555 ",
         ]
 
         products = [
