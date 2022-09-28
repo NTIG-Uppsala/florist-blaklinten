@@ -323,6 +323,61 @@
       openhour_element.innerText = "Ми відкриваємось сьогодні о 10";
     }
   }
+
+  /* sort closed days relative to today */
+
+    let closed_days = [
+      { title: 'Новий рік', month_worded: "січня", month: 1, day: 1 },
+      { title: 'Тринадцятий день Різдва', month_worded: "січня", month: 1, day: 6 },
+      { title: '1 травня', month_worded: "травня", month: 5, day: 1  },
+      { title: 'Національний день Швеції', month_worded: "червня", month: 6, day: 6 },
+      { title: 'Святвечір', month_worded: "грудня", month: 12, day: 24 },
+      { title: 'Різдво', month_worded: "грудня", month: 12, day: 25 },
+      { title: 'День подарунків Різдва', month_worded: "грудня", month: 12, day: 26 },
+      { title: 'Переддень Нового року', month_worded: "грудня", month: 12, day: 31 }
+    ];
+
+    let closed_days_element = document.querySelector('.holidays');
+    closed_days_element.innerHTML = ''; // Clear inner table
+
+    let currentMonth = parseInt(current_date.getMonth() + 1); //get month returns a value between 0 and 11. setting +1 gets the real month number.
+    let currentDay = parseInt(current_date.getDate());
+
+    let dateArr = [];
+
+    let pastDates = [];
+    let futureDates = [];
+
+    for(let i = 0; i < closed_days.length; i++)
+    {
+          if(closed_days[i].month <= currentMonth)
+          {
+              if(closed_days[i].day >= currentDay && closed_days[i].month == currentMonth)
+              {
+                  dateArr.push(closed_days[i])
+              }
+              else 
+              {
+                  pastDates.push(closed_days[i]);
+              }
+          }
+          else 
+          {
+            dateArr.push(closed_days[i]);
+            
+            console.log("past")
+          }
+    }
+    dateArr = dateArr.concat(pastDates);
+    for(let i = 0; i < dateArr.length; i++){
+      closed_days_element.innerHTML += `
+          <tr>
+            <th>${dateArr[i].title}</th>
+            <td></td>
+            <td>${dateArr[i].day} ${dateArr[i].month_worded}</td>
+          </tr>
+      `
+    }
 </script>
 </body>
 </html>
