@@ -86,7 +86,7 @@ class CheckWebsite(unittest.TestCase):
         serviceText = self.driver.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
         productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
         teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
-        closedDaysText = self.driver.find_element(By.ID, "closedDays").text.replace("\n", " ")
+        closedDaysText = self.driver.find_element(By.ID, "closingDays").text.replace("\n", " ")
 
         header = [
             "Florist Blåklinten",
@@ -180,7 +180,7 @@ class CheckWebsite(unittest.TestCase):
         serviceText = self.driver.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
         productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
         teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
-        closedDaysText = self.driver.find_element(By.ID, "closedDays").text.replace("\n", " ")
+        closedDaysText = self.driver.find_element(By.ID, "closingDays").text.replace("\n", " ")
 
         header = [
             "Florist Blåklinten",
