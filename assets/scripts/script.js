@@ -73,7 +73,7 @@ else {
     openhours_text = {
         "closed": "Vi har stängt idag",
         "closing_soon": "Vi stänger snart",
-        "weekdayopenuntil": "Vi Har öppet till klockan 16",
+        "weekdayopenuntil": "Vi har öppet till klockan 16",
         "weekdayopen": "Vi öppnar klockan 10",
         "weekdayclosed": "Vi öppnar klockan 10 imorgon",
         "weekdayclosed2": "Vi öppnar klockan 12 imorgon",
