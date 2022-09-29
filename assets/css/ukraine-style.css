@@ -366,20 +366,21 @@ iframe{
     }
   }
 
-  @media screen and (min-width: 1080px) {
+  /* change to hamburger menu on width < 1221px */
+  @media (min-width: 1290px) {
     .header li {
-        float: left;
+      float: left;
     }
     .header li a {
-        padding: 20px 30px;
+      padding: 20px 30px;
     }
     .header .menu {
-        clear: none;
-        float: right;
-        max-height: none;
+      clear: none;
+      float: right;
+      max-height: none;
     }
     .header .menu-icon {
-        display: none;
+      display: none;
     }
   }
 
