@@ -55,7 +55,7 @@ else {
     /* sort closed days relative to today */
     closed_days = [
         { title: 'Nyårsdagen', month_worded: "Januari", month: 1, day: 1 },
-        { title: 'Trettondedag', month_worded: "Januari", month: 1, day: 6 },
+        { title: 'Trettondedag jul', month_worded: "Januari", month: 1, day: 6 },
         { title: 'Första maj', month_worded: "Maj", month: 5, day: 1  },
         { title: 'Sveriges nationaldag', month_worded: "Juni", month: 6, day: 6 },
         { title: 'Julafton', month_worded: "December", month: 12, day: 24 },
@@ -77,8 +77,6 @@ else {
     }
     console.log("Svenska sidan")
 }
-
-
 
 
 openhour_element = document.querySelector('#live-openhours');
