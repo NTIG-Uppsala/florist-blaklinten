@@ -238,11 +238,21 @@
   </div>
 </div>
 
+<!-- Team Container -->
+<div class="container w3-light-grey w3-padding-top-64" style="padding-bottom: 25px;">
+  <h1 class="w3-center w3-jumbo" style="margin-bottom:16px">Hitta hit</h1>
+  <div id="map">
+    <noscript>
+      <img src="assets/img/map.png" alt="Karta över området där Florist Blåklinten har sin lokal">
+    </noscript>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-48">
     <div class="contact w3-large">
         <h1>Kontakta oss</h1>
-        <p>Fjällgatan 32H <br> 981 39 Finspång</p>
+        <p>De Wijks väg 29<br>612 30 Finspång</p>
         <a href="tel:0630-555-555">0630-555-555</a>
         <a href="mailto:info@ntig-uppsala.github.io">info@ntig-uppsala.github.io</a>
     </div>
@@ -254,132 +264,7 @@
   
 </footer>
 
-<script>
-  let openhours = {
-    "weekdays": {
-      "open": 10,
-      "close": 16
-    },
-    "saturday": {
-      "open": 12,
-      "close": 15
-    },
-    "sunday": {
-      "open": "Closed",
-      "close": "Closed"
-    }
-  }
-
-
-  openhour_element = document.querySelector('#live-openhours');
-
-  const current_date = new Date();
-  const current_day = current_date.getDay();
-  const current_hour = current_date.getHours();
-  const current_minute = current_date.getMinutes();
-
-  if (current_day == 0) 
-  {
-    openhour_element.innerText = "Vi har stängt idag";
-  }
-  else if (current_day == 6) 
-  {   
-    if ((current_hour == ( openhours.saturday.close - 1)) && current_minute >= 30) 
-    {
-      openhour_element.innerText = "Vi stänger snart";
-    }
-    else if (current_hour >= openhours.saturday.open && current_hour < openhours.saturday.close) 
-    {
-        openhour_element.innerText = "Vi har öppet till klockan 15";
-    }
-    else if (current_hour >= openhours.saturday.close) {
-        openhour_element.innerText = "Vi öppnar igen på Måndag klockan 10";
-    }
-    else
-    {
-      openhour_element.innerText = "Vi öppnar klockan 12 idag";
-    }
-  }
-  else if (current_day >= 1 && current_day <= 5) 
-  {
-
-    if ((current_hour == (openhours.weekdays.close - 1)) && current_minute >= 30) 
-    {
-      openhour_element.innerText = "Vi stänger snart";
-    }
-    else if (current_hour >= openhours.weekdays.open && current_hour < openhours.weekdays.close) 
-    {
-      openhour_element.innerText = "Vi har öppet till klockan 16";
-    }
-    else if (current_hour >= openhours.weekdays.close) {
-      if (current_day + 1 == 6) {
-        openhour_element.innerText = "Vi öppnar klockan 12 imorgon";
-      }
-      else {
-        openhour_element.innerText = "Vi öppnar klockan 10 imorgon";
-      }
-    }
-    else
-    {
-      openhour_element.innerText = "Vi öppnar klockan 10 idag";
-    }
-  }
-
-  /* sort closed days relative to today */
-  let closed_days = [
-      { title: 'Nyårsdagen', month_worded: "Januari", month: 1, day: 1 },
-      { title: 'Trettondedag jul', month_worded: "Januari", month: 1, day: 6 },
-      { title: 'Första maj', month_worded: "Maj", month: 5, day: 1  },
-      { title: 'Sveriges nationaldag', month_worded: "Juni", month: 6, day: 6 },
-      { title: 'Julafton', month_worded: "December", month: 12, day: 24 },
-      { title: 'Juldagen', month_worded: "December", month: 12, day: 25 },
-      { title: 'Annandag jul', month_worded: "December", month: 12, day: 26 },
-      { title: 'Nyårsafton', month_worded: "December", month: 12, day: 31 }
-    ];
-
-    let closed_days_element = document.querySelector('.holidays');
-    closed_days_element.innerHTML = ''; // Clear inner table
-
-    let currentMonth = parseInt(current_date.getMonth() + 1); //get month returns a value between 0 and 11. setting +1 gets the real month number.
-    let currentDay = parseInt(current_date.getDate());
-
-    let dateArr = [];
-
-    let pastDates = [];
-    let futureDates = [];
-
-    for(let i = 0; i < closed_days.length; i++)
-    {
-          if(closed_days[i].month <= currentMonth)
-          {
-              if(closed_days[i].day >= currentDay && closed_days[i].month == currentMonth)
-              {
-                  dateArr.push(closed_days[i])
-              }
-              else 
-              {
-                  pastDates.push(closed_days[i]);
-              }
-          }
-          else 
-          {
-            dateArr.push(closed_days[i]);
-            
-            console.log("past")
-          }
-    }
-    dateArr = dateArr.concat(pastDates);
-    for(let i = 0; i < dateArr.length; i++){
-      closed_days_element.innerHTML += `
-          <tr>
-            <th>${dateArr[i].title}</th>
-            <td></td>
-            <td>${dateArr[i].day} ${dateArr[i].month_worded}</td>
-          </tr>
-      `
-    }
-
-</script>
+<script src="assets/scripts/script.js"></script>
 
 </body>
 </html>

@@ -238,6 +238,16 @@
   </div>
 </div>
 
+<!-- Team Container -->
+<div class="container w3-light-grey w3-padding-top-64" style="padding-bottom: 25px;">
+  <h1 class="w3-center w3-jumbo" style="margin-bottom:16px">Знайдіть нас</h1>
+  <div id="map">
+    <noscript>
+      <img src="assets/img/map.png" alt="Карта місцевості, де знаходиться флорист Blåklinten">
+    </noscript>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-48">
     <div class="contact w3-large">
@@ -254,130 +264,6 @@
   
 </footer>
 
-<script>
-   openhours = {
-    "weekdays": {
-      "open": 10,
-      "close": 16
-    },
-    "saturday": {
-      "open": 12,
-      "close": 15
-    },
-    "sunday": {
-      "open": "Closed",
-      "close": "Closed"
-    }
-  }
-
-  openhour_element = document.querySelector('#live-openhours');
-
-  const current_date = new Date();
-  const current_day = current_date.getDay();
-  const current_hour = current_date.getHours();
-  const current_minute = current_date.getMinutes();
-
-  if (current_day == 0) 
-  {
-    openhour_element.innerText = "Ми закриті на день";
-  }
-  else if (current_day == 6) 
-  {   
-    if ((current_hour == ( openhours.saturday.close - 1)) && current_minute >= 30) 
-    {
-      openhour_element.innerText = "Ми скоро зачиняємося";
-    }
-    else if (current_hour >= openhours.saturday.open && current_hour < openhours.saturday.close) 
-    {
-        openhour_element.innerText = "Ми працюємо до 15";
-    }
-    else if (current_hour >= openhours.saturday.close) {
-        openhour_element.innerText = "Ми знову відкриваємось у понеділок о 10";
-    }
-    else
-    {
-      openhour_element.innerText = "Сьогодні ми відкриваємо о 12 годині";
-    }
-  }
-  else if (current_day >= 1 && current_day <= 5) 
-  {
-
-    if ((current_hour == (openhours.weekdays.close - 1)) && current_minute >= 30) 
-    {
-      openhour_element.innerText = "Ми скоро зачиняємося";
-    }
-    else if (current_hour >= openhours.weekdays.open && current_hour < openhours.weekdays.close) 
-    {
-      openhour_element.innerText = "Ми працюємо до 16";
-    }
-    else if (current_hour >= openhours.weekdays.close) {
-      if (current_day + 1 == 6) {
-        openhour_element.innerText = "Ми відкриваємось завтра о 12";
-      }
-      else {
-        openhour_element.innerText = "Ми відкриваємось завтра о 10";
-      }
-    }
-    else
-    {
-      openhour_element.innerText = "Ми відкриваємось сьогодні о 10";
-    }
-  }
-
-  /* sort closed days relative to today */
-
-    let closed_days = [
-      { title: 'Новий рік', month_worded: "січня", month: 1, day: 1 },
-      { title: 'Тринадцятий день Різдва', month_worded: "січня", month: 1, day: 6 },
-      { title: '1 травня', month_worded: "травня", month: 5, day: 1  },
-      { title: 'Національний день Швеції', month_worded: "червня", month: 6, day: 6 },
-      { title: 'Святвечір', month_worded: "грудня", month: 12, day: 24 },
-      { title: 'Різдво', month_worded: "грудня", month: 12, day: 25 },
-      { title: 'День подарунків Різдва', month_worded: "грудня", month: 12, day: 26 },
-      { title: 'Переддень Нового року', month_worded: "грудня", month: 12, day: 31 }
-    ];
-
-    let closed_days_element = document.querySelector('.holidays');
-    closed_days_element.innerHTML = ''; // Clear inner table
-
-    let currentMonth = parseInt(current_date.getMonth() + 1); //get month returns a value between 0 and 11. setting +1 gets the real month number.
-    let currentDay = parseInt(current_date.getDate());
-
-    let dateArr = [];
-
-    let pastDates = [];
-    let futureDates = [];
-
-    for(let i = 0; i < closed_days.length; i++)
-    {
-          if(closed_days[i].month <= currentMonth)
-          {
-              if(closed_days[i].day >= currentDay && closed_days[i].month == currentMonth)
-              {
-                  dateArr.push(closed_days[i])
-              }
-              else 
-              {
-                  pastDates.push(closed_days[i]);
-              }
-          }
-          else 
-          {
-            dateArr.push(closed_days[i]);
-            
-            console.log("past")
-          }
-    }
-    dateArr = dateArr.concat(pastDates);
-    for(let i = 0; i < dateArr.length; i++){
-      closed_days_element.innerHTML += `
-          <tr>
-            <th>${dateArr[i].title}</th>
-            <td></td>
-            <td>${dateArr[i].day} ${dateArr[i].month_worded}</td>
-          </tr>
-      `
-    }
-</script>
+<script src="assets/scripts/script.js"></script>
 </body>
 </html>
