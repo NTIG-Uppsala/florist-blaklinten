@@ -367,7 +367,8 @@ iframe{
     }
   }
 
-  @media (min-width: 910px) {
+  /* change to hamburger menu on width < 1221px */
+  @media (min-width: 1221px) {
     .header li {
       float: left;
     }
