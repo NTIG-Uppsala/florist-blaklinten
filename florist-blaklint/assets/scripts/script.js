@@ -159,9 +159,9 @@ dateArr = dateArr.concat(pastDates);
 for(let i = 0; i < dateArr.length; i++){
     closed_days_element.innerHTML += `
         <tr>
-        <th>${dateArr[i].title}</th>
-        <td></td>
-        <td>${dateArr[i].day} ${dateArr[i].month_worded}</td>
+            <th>${dateArr[i].title}</th>
+            <td></td>
+            <td>${dateArr[i].day} ${dateArr[i].month_worded}</td>
         </tr>
     `
 }
