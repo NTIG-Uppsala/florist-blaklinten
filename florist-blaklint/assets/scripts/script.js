@@ -26,7 +26,7 @@ let openhours = {
 }
 let closed_days, openhours_text;
 
-if (pageLang == 'ua') {
+if (pageLang == 'uk') {
     /* sort closed days relative to today */
     closed_days = [
         { title: 'Новий рік', month_worded: "січня", month: 1, day: 1 },
