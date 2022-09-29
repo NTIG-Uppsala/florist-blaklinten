@@ -91,7 +91,7 @@ body,h1,h2,h3,h4,h5,h6{
 }
 
 .header .menu-btn:checked ~ .menu {
-  max-height: 320px;
+  max-height: 100%;
 }
 
 .header .menu-btn:checked ~ .menu-icon .navicon {

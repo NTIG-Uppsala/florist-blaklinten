@@ -72,7 +72,7 @@ body,h1,h2,h3,h4,h5,h6{
   display: block;
   height: 100%;
   position: absolute;
-  transition: all .2s ease-out;
+  transition: all .2s ease-in-out;
   width: 100%;
 }
 
@@ -91,7 +91,7 @@ body,h1,h2,h3,h4,h5,h6{
 }
 
 .header .menu-btn:checked ~ .menu {
-  max-height: 320px;
+  max-height: 100%;
 }
 
 .header .menu-btn:checked ~ .menu-icon .navicon {
