@@ -171,7 +171,7 @@ class CheckWebsite(unittest.TestCase):
             self.assertIn(text, closedDaysText)
         print("Closed days text found")
 
-        self.assertIn("&copy; 2022 NTI-Gymnasiet", copyrightText)
+        self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
         print("Copyright text found")
 
 
@@ -268,7 +268,7 @@ class CheckWebsite(unittest.TestCase):
             self.assertIn(text, closedDaysText)
         print("Closed days text found")
 
-        self.assertIn("&copy; 2022 NTI-Gymnasiet", copyrightText)
+        self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
         print("Copyright text found")
 
     # checks background image
