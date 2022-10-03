@@ -90,7 +90,7 @@ class CheckWebsite(unittest.TestCase):
 
         header = [
             "Florist Blåklinten",
-            "Телефонуйте нам 0630-555-555",
+            "Для бронювання та замовлення телефонуйте нам 0630-555-555",
         ]
 
         products = [
@@ -184,7 +184,7 @@ class CheckWebsite(unittest.TestCase):
 
         header = [
             "Florist Blåklinten",
-            "Ring oss på 0630-555-555 ",
+            "För bokning och beställning ring oss på 0630-555-555",
         ]
 
         products = [
