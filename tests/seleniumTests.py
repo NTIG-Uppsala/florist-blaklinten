@@ -87,6 +87,7 @@ class CheckWebsite(unittest.TestCase):
         productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
         teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
         closedDaysText = self.driver.find_element(By.ID, "holidays").text.replace("\n", " ")
+        copyrightText = self.driver.find_element(By.TAG_NAME, "footer").text.replace("\n", " ")
 
         header = [
             "Florist Blåklinten",
@@ -170,6 +171,9 @@ class CheckWebsite(unittest.TestCase):
             self.assertIn(text, closedDaysText)
         print("Closed days text found")
 
+        self.assertIn("&copy; 2022 NTI-Gymnasiet", copyrightText)
+        print("Copyright text found")
+
 
     # checks for important information on the website
     def test_check_info_on_page(self):
@@ -181,6 +185,7 @@ class CheckWebsite(unittest.TestCase):
         productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
         teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
         closedDaysText = self.driver.find_element(By.ID, "holidays").text.replace("\n", " ")
+        copyrightText = self.driver.find_element(By.TAG_NAME, "footer").text.replace("\n", " ")
 
         header = [
             "Florist Blåklinten",
@@ -262,6 +267,9 @@ class CheckWebsite(unittest.TestCase):
         for text in closedDays:
             self.assertIn(text, closedDaysText)
         print("Closed days text found")
+
+        self.assertIn("&copy; 2022 NTI-Gymnasiet", copyrightText)
+        print("Copyright text found")
 
     # checks background image
     def test_check_background(self):
