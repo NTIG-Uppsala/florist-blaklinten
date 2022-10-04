@@ -155,7 +155,7 @@ body,h1,h2,h3,h4,h5,h6{
 
 .local-container img:hover {
   filter:grayscale(0%);
-  scale: 1.2;
+  transform: scale(1.2);
 }
 
 /* products */
