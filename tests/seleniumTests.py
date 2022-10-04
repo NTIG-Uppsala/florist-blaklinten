@@ -15,68 +15,99 @@ from selenium.webdriver.common.action_chains import ActionChains
 class CheckWebsite(unittest.TestCase):
     website_url = "http://localhost:8000/"  # Standard URL
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         service = Service(executable_path=ChromeDriverManager().install())
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
-        options.add_argument('--no-sandbox')
-        options.add_argument('--disable-dev-shm-usage')
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])
-
         self.driver = webdriver.Chrome(service=service, options=options)
-        # Closes browser when the tests are finished
-        self.addCleanup(self.driver.quit)
+
+        self.page_names = [
+        "index.html",
+        "index-ua.html",
+        "finspang.html",
+        "finspang-ua.html",
+        "norrkoping.html",
+        "norrkoping-ua.html",
+    ]
+    
+    @classmethod
+    def tearDownClass(self):
+        self.driver.quit()
 
     # Check if "Florist Blåklinten" is in the <title> of the page
     def test_page_title(self):
-        self.driver.get(self.website_url)
-        title = self.driver.title
-        self.assertIn(title, "Florist Blåklinten")
+        for p in self.page_names:
+            print("testing page: {}".format(p))
+            self.driver.get(self.website_url + p)
+            title = self.driver.title
+            self.assertIn(title, "Florist Blåklinten")
+            print("Page title found on page " + p)
 
     def test_check_logo(self):
-        self.driver.get(self.website_url)
-
-        logoElement = self.driver.find_element(By.XPATH, "//link[@type='image/x-icon']")
-        self.assertIn('favicon.ico', logoElement.get_attribute("href"))
+        for p in self.page_names:
+            self.driver.get(self.website_url + p)
+            print("Checking logo exists on: {}".format(p))
+            logoElement = self.driver.find_element(By.XPATH, "//link[@type='image/x-icon']")
+            self.assertIn('favicon.ico', logoElement.get_attribute("href"))
+            print("Logo found on page " + p)
 
     # checks for empty links
     def test_check_for_empty_links(self):
-        self.driver.get(self.website_url)
+        for p in self.page_names:
+            print("Checking for empty links on: {}".format(p))
 
-        links = self.driver.find_elements(By.TAG_NAME, "a")
+            self.driver.get(self.website_url + p)
+            links = self.driver.find_elements(By.TAG_NAME, "a")
 
-        for link in links:
-            self.assertNotEqual(link.get_attribute("href").split("/")[-1], "#")
-            self.assertIsNotNone(link.get_attribute("href"))
+            for link in links:
+                self.assertNotEqual(link.get_attribute("href").split("/")[-1], "#")
+                self.assertIsNotNone(link.get_attribute("href"))
+            print("No empty links found on page " + p)
 
     def test_menu_links(self):
-        self.driver.get(self.website_url)
+        for p in self.page_names:
+            if p == "index.html" or p == "index-ua.html":
+                pass
+                print("Skipping index page")
+            else:
+                print("Checking menu links on: {}".format(p))
+                self.driver.get(self.website_url + p)
 
-        navigation = self.driver.find_element(By.TAG_NAME, "nav")
-        links = navigation.find_elements(By.TAG_NAME, "a")
-        required_links = [
-            "#home",
-            "#products",
-            "#services",
-            "#team"
-        ]
-        for link in required_links:
-            self.assertIn(link, [link.get_attribute("href").split('/')[-1] for link in links])
+                navigation = self.driver.find_element(By.TAG_NAME, "nav")
+                links = navigation.find_elements(By.TAG_NAME, "a")
+                required_links = [
+                    "#home",
+                    "#products",
+                    "#services",
+                    "#team",
+                    "#find-us"
+                ]
+                for link in required_links:
+                    tag_list = []
+                    crnt_tag = [link.get_attribute("href").split('/')[-1] for link in links]
+                    for x in crnt_tag:
+                        tag_list.append(x.split("html",1)[1])
+
+                    self.assertIn(link, tag_list)
+                print("Menu links found on page " + p)
     
+
     def test_flag_links(self):
-        self.driver.get(self.website_url)
+        for p in self.page_names:
+            print("Checking flag links on: {}".format(p))
+            self.driver.get(self.website_url + p)
 
-        navigation = self.driver.find_element(By.TAG_NAME, "nav")
-        links = navigation.find_elements(By.TAG_NAME, "a")
-        
-        self.assertIn("index-ua.html", [link.get_attribute("href").split('/')[-1] for link in links])
+            if "ua" in p:
+                crntIndex = self.page_names.index(p) - 1
+            else:
+                crntIndex = self.page_names.index(p) + 1
 
-        self.driver.get(self.website_url + "index-ua.html")
-        
-        navigation = self.driver.find_element(By.TAG_NAME, "nav")
-        links = navigation.find_elements(By.TAG_NAME, "a")
-
-        self.assertIn("index.html", [link.get_attribute("href").split('/')[-1] for link in links])
+            navigation = self.driver.find_element(By.TAG_NAME, "nav")
+            links = navigation.find_elements(By.TAG_NAME, "a")
+            
+            self.assertIn(self.page_names[crntIndex], [link.get_attribute("href").split('/')[-1] for link in links])
+            print("Flag links found on page " + p)
 
     def test_check_info_homepage(self):
         self.driver.get(self.website_url + "index.html")
@@ -522,28 +553,45 @@ class CheckWebsite(unittest.TestCase):
 
     # checks background image
     def test_check_background(self):
-        self.driver.get(self.website_url)
+        for p in self.page_names:
+            if p == "index.html" or p == "index-ua.html":
+                pass
+                print("No background image on index page")
+            else:
+                if p == "finspang.html" or p == "finspang-ua.html":
+                    bg_image = "bg-b.jpg"
+                    bg_class = "bgimg"
+                elif p == "norrkoping.html" or p == "norrkoping-ua.html":
+                    bg_image = "bg-r.jpg"
+                    bg_class = "bgimg2"
 
-        my_property = WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".bgimg"))).value_of_css_property("background-image")
-        self.assertIn("bg-b.jpg", my_property)
+                self.driver.get(self.website_url + p)
+                print(p, bg_image, bg_class)
+                my_property = self.driver.find_element(By.CLASS_NAME, bg_class).value_of_css_property("background-image")
+                # my_property = WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located((By.CSS_SELECTOR, bg_class))).value_of_css_property("background-image")
+                self.assertIn(bg_image, my_property)
+                print("Background images found on " + p)
 
     # checks images on the page and if they exists
     def test_for_images_on_page(self):
-        self.driver.get(self.website_url)
-        # get all elements with img tag
-        image_elements = self.driver.find_elements(By.TAG_NAME, 'img')
+        for p in self.page_names:
+            print("Checking images on " + p)
+            self.driver.get(self.website_url)
+            # get all elements with img tag
+            image_elements = self.driver.find_elements(By.TAG_NAME, 'img')
 
-        for image in image_elements:
-            image_source = image.get_attribute('src')
+            for image in image_elements:
+                image_source = image.get_attribute('src')
 
-            # if the img has a src attribute with a image
-            if image.get_attribute('src') is not None:
-                # Assert that the image source is fetchable from the server ( < 400 )
-                print("Checking {}".format(image_source))
-                self.assertLess(requests.get(image_source).status_code, 400)
-            else:  # assert False (Just a fail)
-                self.assertTrue(False)
-                continue
+                # if the img has a src attribute with a image
+                if image.get_attribute('src') is not None:
+                    # Assert that the image source is fetchable from the server ( < 400 )
+                    print("Checking {}".format(image_source))
+                    self.assertLess(requests.get(image_source).status_code, 400)
+                else:  # assert False (Just a fail)
+                    self.assertTrue(False)
+                    continue
+            print("Images found on " + p)
 
     def test_for_large_images(self):
         images = Path(__file__).resolve().parents[1] / Path('florist-blaklint/assets/images/')
@@ -557,22 +605,29 @@ class CheckWebsite(unittest.TestCase):
 
     # checks the links and clicks on them and compares it with "current_url"
     def test_social_links(self):
-        self.driver.get(self.website_url)
+        for p in self.page_names:
+            if p == "index-ua.html" or p == "index.html":
+                pass
+                print("No social links on index page")
+            else:
+                self.driver.get(self.website_url + p)
 
-        # List of social medias
-        socials = ["facebook", "instagram", "twitter"]
+                # List of social medias
+                socials = ["facebook", "instagram", "twitter"]
 
-        # Loop over list
-        for social in socials:
-            # Check if link and icon is on page
-            socialElement =  self.driver.find_element(By.CLASS_NAME, f"fa-{social}")
-            ActionChains(socialElement).move_to_element(socialElement).click()
-            socialHref = socialElement.get_attribute("href")
+                # Loop over list
+                for social in socials:
+                    # Check if link and icon is on page
+                    socialElement =  self.driver.find_element(By.CLASS_NAME, f"fa-{social}")
+                    ActionChains(socialElement).move_to_element(socialElement).click()
+                    socialHref = socialElement.get_attribute("href")
 
-            self.assertEqual(socialHref, f"https://{social}.com/ntiuppsala")
+                    self.assertEqual(socialHref, f"https://{social}.com/ntiuppsala")
+                print("Social links found on " + p)
+
     # Check for map
     def test_check_map(self):
-        self.driver.get(self.website_url)
+        self.driver.get(self.website_url + "finspang.html")
         map_url = "google.com/maps/embed?pb=!1m18!1m12!1m3!1d2072.472099087858!2d15.768257516460107!3d58.70529006794066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46594feedcca3b1d%3A0x6c778af446b70e00!2sDe%20Wijks%20v%C3%A4g%2029%2C%20612%2030%20Finsp%C3%A5ng!5e0!3m2!1sen!2sse!4v1664435816938!5m2!1sen!2sse"
         map_element = self.driver.find_element(By.ID, "mapiframe")
 
