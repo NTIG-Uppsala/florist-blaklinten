@@ -29,6 +29,10 @@ body,h1,h2,h3,h4,h5,h6{
   text-decoration: none;
 }
 
+.header .hover-orange li a:hover {
+  background-color: #ce6941;
+  color: white;
+}
 
 .header .headerTitle {
   display: block;
@@ -118,6 +122,14 @@ body,h1,h2,h3,h4,h5,h6{
   background-size: cover;
   background-position: center;
   background-image: url("../img/bg-b.jpg");
+  height: 100vh;
+}
+
+.bgimg2 {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../img/bg-r.jpg");
   height: 100vh;
 }
 
@@ -272,7 +284,6 @@ body,h1,h2,h3,h4,h5,h6{
   flex-direction: column;
   align-items: center;
   padding: 100px 0;
-  background-color:rgb(149, 145, 183);
 }
   
 .openTimes {
@@ -312,7 +323,6 @@ body,h1,h2,h3,h4,h5,h6{
   flex-direction: column;
   align-items: center;
   padding: 0 0 100px 0;
-  background-color:rgb(149, 145, 183);
 }
 
 .closingDays {
