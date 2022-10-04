@@ -29,6 +29,9 @@ body,h1,h2,h3,h4,h5,h6{
   text-decoration: none;
 }
 
+.header .hover-orange li a:hover {
+  background-color: #ce6941;
+}
 
 .header .headerTitle {
   display: block;
@@ -119,6 +122,51 @@ body,h1,h2,h3,h4,h5,h6{
   background-position: center;
   background-image: url("../img/bg-b.jpg");
   height: 100vh;
+}
+
+.bgimg2 {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../img/bg-r.jpg");
+  height: 100vh;
+}
+
+.local-height {
+  min-height: 70vh;
+}
+
+.container-info {
+  color: white;
+  text-align: center;
+}
+
+.image-container {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.local-container {
+  height: 250px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  overflow: hidden;
+  margin: 0 60px;
+}
+
+.local-container img {
+  filter: grayscale(50%);
+  transition-duration: 0.5s;
+}
+
+.local-container img:hover {
+  filter:grayscale(0%);
+  transform: scale(1.2);
 }
 
 /* products */
@@ -235,7 +283,6 @@ body,h1,h2,h3,h4,h5,h6{
   flex-direction: column;
   align-items: center;
   padding: 100px 0;
-  background-color:rgb(149, 145, 183);
 }
   
 .openTimes {
@@ -269,7 +316,6 @@ body,h1,h2,h3,h4,h5,h6{
   flex-direction: column;
   align-items: center;
   padding: 0 0 100px 0;
-  background-color:rgb(149, 145, 183);
 }
 
 .closingDays {
