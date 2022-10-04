@@ -81,7 +81,6 @@ else {
         "weekendopen": "Vi öppnar klockan 12",
         "weekendclosed": "Vi öppnar igen på Måndag klockan 10",
     }
-    console.log("Svenska sidan")
 }
 
 
@@ -152,7 +151,6 @@ for(let i = 0; i < closed_days.length; i++)
         {
         dateArr.push(closed_days[i]);
         
-        console.log("past")
         }
 }
 dateArr = dateArr.concat(pastDates);

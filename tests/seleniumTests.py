@@ -560,15 +560,15 @@ class CheckWebsite(unittest.TestCase):
             else:
                 if p == "finspang.html" or p == "finspang-ua.html":
                     bg_image = "bg-b.jpg"
-                    bg_class = ".bgimg"
-                else:
+                    bg_class = "bgimg"
+                elif p == "norrkoping.html" or p == "norrkoping-ua.html":
                     bg_image = "bg-r.jpg"
-                    bg_class = ".bgimg2"
+                    bg_class = "bgimg2"
 
-                self.driver.get(self.website_url)
-
-                my_property = self.driver.find_element(By.CSS_SELECTOR, bg_class).value_of_css_property("background-image")
-                # my_property = WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, bg_class))).value_of_css_property("background-image")
+                self.driver.get(self.website_url + p)
+                print(p, bg_image, bg_class)
+                my_property = self.driver.find_element(By.CLASS_NAME, bg_class).value_of_css_property("background-image")
+                # my_property = WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located((By.CSS_SELECTOR, bg_class))).value_of_css_property("background-image")
                 self.assertIn(bg_image, my_property)
                 print("Background images found on " + p)
 
