@@ -78,7 +78,57 @@ class CheckWebsite(unittest.TestCase):
 
         self.assertIn("index.html", [link.get_attribute("href").split('/')[-1] for link in links])
 
-    def test_check_info_ukranian_finspang(self):
+    def test_check_info_homepage(self):
+        self.driver.get(self.website_url + "index.html")
+        pageText = self.driver.find_element(By.ID, "page-content").text.replace("\n", " ")
+        copyrightText = self.driver.find_element(By.TAG_NAME, "footer").text.replace("\n", " ")
+
+        pageText = [
+            "VÅRA LOKALER",
+            "Välj och tryck på en av bilderna nedan",
+            "för att komma till en av våra två lokaler",
+            "Finspång",
+            "De Wijks väg 29",
+            "612 30 Finspång",
+            "Norrköping",
+            "Färjledsvägen 38",
+            "961 93 Norrköping",
+            "Södra Sunderbyn"
+        ]
+
+        for text in pageText:
+            self.assertIn(text, pageText)
+        print("Page text found")
+
+        self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
+        print("Copyright text found")
+
+    def test_check_info_ukrainian_homepage(self):
+        self.driver.get(self.website_url + "index-ua.html")
+        pageText = self.driver.find_element(By.ID, "page-content").text.replace("\n", " ")
+        copyrightText = self.driver.find_element(By.TAG_NAME, "footer").text.replace("\n", " ")
+
+        pageText = [
+            "НАШІ ПРИМІЩЕННЯ",
+            "Виберіть і торкніться одного із зображень нижче",
+            "щоб прийти в одне з наших приміщень",
+            "Finspång",
+            "De Wijks väg 29",
+            "612 30 Finspång",
+            "Norrköping",
+            "Färjledsvägen 38",
+            "961 93 Norrköping",
+            "Södra Sunderbyn"
+        ]
+
+        for text in pageText:
+            self.assertIn(text, pageText)
+        print("Page text found")
+
+        self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
+        print("Copyright text found")
+
+    def test_check_info_ukrainian_finspang(self):
         self.driver.get(self.website_url + "finspang-ua.html")
 
         headerText = self.driver.find_element(By.ID, "home").text.replace("\n", " ")
@@ -96,7 +146,7 @@ class CheckWebsite(unittest.TestCase):
 
         products = [
             "Весільний букет", "1200 kr",
-            "Похоронний вінок", "800 kr",
+            "Вінок", "800 kr",
             "Осінній букет", "400 kr",
             "Літній букет", "200 kr",
             "Троянди 10 шт", "150 kr", 
@@ -108,27 +158,27 @@ class CheckWebsite(unittest.TestCase):
         ]
 
         openHours = [
-            "Робочі дні", "10 - 16",
+            "Пн-Пт", "10 - 16",
             "Субота", "12 - 15",
             "неділя", "Зачинено"
         ]
 
         team = [
             "Наш персонал",
-            "Вітаю до нас у Florist Blåklinten! Ми є згуртованою групою з різними експертними навичками, які можуть допомогти вам найкращим чином відповідно до ваших потреб.",
+            "Вітаємо у Florist Blåklinten! Наша дружня команда з різними експертними навичками,які можуть допомогти вам найкращим чином.",
             "Örjan Johansson",
             "Флорист",
-            "Якщо вам потрібен букет, будь то на весілля, день народження чи щось зовсім інше, я можу допомогти вам скласти букет на основі ваших побажань.",
+            "Якщо вам потрібен букет,чи то на весілля,день народження чи щось зовсім інше,я можу вам допомогти скласти букет за вашим бажанням.",
             "Anna Pettersson",
-            "Хортолог",
-            "Я кваліфікований садівник і можу допомогти вам або вашій компанії зробити найкращий вибір, виходячи з ваших потреб та умов щодо фруктових дерев, овочівництва та декоративних рослин.",
+            "Експерт-садiвник",
+            "Я кваліфікований садівник і можу допомогти вам або вашій компанії зробити найкращий вибір,фруктових дерев,декоративних рослин або овочевих культур,враховуючи ваші потреби,умови та вподобання.",
             "Fredrik Örtqvist",
             "Власник",
             "Моя любов до квітів заклала основу для існування Florist Blåklinten сьогодні, і я сподіваюся, що ви як клієнт можете надихнутися в нашому магазині."
         ]
 
         closedDays = [
-            "Неробочі дні",
+            "Вихідні дні",
             "Новий рік",
             "1 січня",
             "Тринадцятий день Різдва",
@@ -174,7 +224,7 @@ class CheckWebsite(unittest.TestCase):
         self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
         print("Copyright text found")
 
-    def test_check_info_ukranian_norrkoping(self):
+    def test_check_info_ukrainian_norrkoping(self):
         self.driver.get(self.website_url + "norrkoping-ua.html")
 
         headerText = self.driver.find_element(By.ID, "home").text.replace("\n", " ")
@@ -192,7 +242,7 @@ class CheckWebsite(unittest.TestCase):
 
         products = [
             "Весільний букет", "1200 kr",
-            "Похоронний вінок", "800 kr",
+            "Вінок", "800 kr",
             "Осінній букет", "400 kr",
             "Літній букет", "200 kr",
             "Троянди 10 шт", "150 kr", 
@@ -210,12 +260,12 @@ class CheckWebsite(unittest.TestCase):
             "четвер", "10 - 16",
             "П'ятниця", "10 - 16",
             "Субота", "12 - 15",
-            "неділя", "Зачинено"
+            "Неділя", "Зачинено"
         ]
 
         team = [
             "Наш персонал",
-            "Вітаю до нас у Florist Blåklinten! Ми є згуртованою групою з різними експертними навичками, які можуть допомогти вам найкращим чином відповідно до ваших потреб.",
+            "Вітаємо у Florist Blåklinten! Наша дружня команда з різними експертними навичками,які можуть допомогти вам найкращим чином.",
             "Johan Olsson",
             "Флорист",
             "У своїх японських садах я знаходжу спокій і натхнення. Моя спеціалізація – спілкування з клієнтами, де ми разом створюємо індивідуальну квіткову концепцію!",
@@ -223,12 +273,12 @@ class CheckWebsite(unittest.TestCase):
             "Флорист",
             "Коли я складаю букет, то починаю з квітки. Я додаю по одній квітці в цю серцевину, поки букет не стане потрібного розміру.",
             "Elin Nygård",
-            "Хортолог",
+            "Експерт-садiвник",
             "Мій сад – мій найкращий учитель. Дозвольте мені поділитися знаннями, які я отримав за десятки сезонів чергування пишних кольорів і уповільненого росту."
         ]
 
         closedDays = [
-            "Неробочі дні",
+            "Вихідні дні",
             "Новий рік",
             "1 січня",
             "Тринадцятий день Різдва",
@@ -384,7 +434,7 @@ class CheckWebsite(unittest.TestCase):
 
         header = [
             "Florist Blåklinten",
-            "För bokning och beställning ring oss på 0630-555-555",
+            "För bokning och beställning ring oss på 0640-555-333",
         ]
 
         products = [
