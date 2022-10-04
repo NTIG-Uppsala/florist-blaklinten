@@ -121,6 +121,43 @@ body,h1,h2,h3,h4,h5,h6{
   height: 100vh;
 }
 
+.local-height {
+  min-height: 70vh;
+}
+
+.container-info {
+  color: white;
+  text-align: center;
+}
+
+.image-container {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.local-container {
+  height: 250px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  overflow: hidden;
+  margin: 0 60px;
+}
+
+.local-container img {
+  filter: grayscale(50%);
+  transition-duration: 0.5s;
+}
+
+.local-container img:hover {
+  filter:grayscale(0%);
+  transform: scale(1.2);
+}
+
 /* products */
 .cards {
   display: flex;

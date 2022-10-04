@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<title>Florist Blåklinten</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" sizes="32x32">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- w3school css -->
+<link rel="stylesheet" href="assets/css/styles.css">
+<!-- our css -->
+<link rel="stylesheet" href="assets/css/style.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<nav class="header w3-top">
+  <div class="w3-bar w3-medium w3-black w3-card" id="myNavbar">
+  <a href="#home" class="headerTitle">FLORIST BLÅKLINTEN</a>
+  <input class="menu-btn" type="checkbox" id="menu-btn">
+  <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+  <ul class="menu">
+    <li><a href="#openhours" class="w3-button">ÖPPETTIDER</a></li>
+    <li><a href="#products" class="w3-button">PRODUKTER</a></li>
+    <li><a href="#services" class="w3-button">TJÄNSTER</a></li>
+    <li><a href="#team" class="w3-button">PERSONAL</a></li>
+    <li><a href="#find-us" class="w3-button">HITTA OSS</a></li>
+    <li><a href="finspang-ua.html" class="w3-button"><img src="assets/favicon/ukraine.svg" alt="Значок посилання на український сайт" width="24" height="16"></a></li>
+  </ul>
+</div>
+</nav>
+
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-middle w3-center" style="background-color: rgba(0, 0, 0, 0.4); padding: 30px;">
+    <h1 class="w3-text-white w3-hide-small" style="font-size:90px;">Florist Blåklinten</h1>
+    <h1 class="w3-text-white w3-hide-large w3-hide-medium" style="font-size:40px"><b>Florist Blåklinten</b></h1>
+    <p class="w3-text-white" style="font-size:25px">För bokning och beställning ring oss på <a href="tel:0630-555-555">0630-555-555</a></p>
+    <p class="w3-text-white" id="live-openhours" style="font-size:25px;"></p>
+    <p><a href="#products" class="w3-product-button w3-xxlarge w3-white">Se Produkter</a></p>
+  </div>
+</header>
+
+<div class="w3-container w3-padding-64 w3-grey-purple w3-xlarge" style="display: flex; flex-direction: column;" id="openhours">
+  <div class="openTimesContainer">
+    <div class="openTimes">
+        <h1 class="w3-jumbo">Öppettider</h1>
+    </div>
+        <table class="openHours">
+          <tr>
+              <th>Vardagar</th>
+              <td></td>
+              <td>10 - 16</td>
+          </tr>
+          <tr>
+              <th>Lördag</th>
+              <td></td>
+              <td>12 - 15</td>
+          </tr>
+          <tr>
+              <th>Söndag</th>
+              <td></td>
+              <td>Stängt</td>
+          </tr>
+        </table>
+  </div>
+  <div class="closingDaysContainer" id="holidays">
+    <div class="closingDays">
+        <h1 class="w3-jumbo">Stängda dagar</h1>
+    </div>
+        <table class="holidays">
+          <tr>
+            <th>Nyårsdagen</th>
+            <td></td>
+            <td>1 Januari</td>
+          </tr>
+          <tr>
+            <th>Trettondedag jul</th>
+            <td></td>
+            <td>6 Januari</td>
+          </tr>
+          <tr>
+            <th>Första maj</th>
+            <td></td>
+            <td>1 Maj</td>
+          </tr>
+          <tr>
+            <th>Sveriges nationaldag</th>
+            <td></td>
+            <td>6 Juni</td>
+          </tr>
+          <tr>
+              <th>Julafton</th>
+              <td></td>
+              <td>24 December</td>
+          </tr>
+          <tr>
+              <th>Juldagen</th>
+              <td></td>
+              <td>25 December</td>
+          </tr>
+          <tr>
+              <th>Annandag jul</th>
+              <td></td>
+              <td>26 December</td>
+          </tr>
+          <tr>
+            <th>Nyårsafton</th>
+            <td></td>
+            <td>31 December</td>
+          </tr>
+        </table>
+  </div>
+</div>
+
+<!-- Closed Days
+<div class="w3-container w3-padding-64 w3-grey-purple w3-xlarge" id="holidays">
+  <div class="closingDaysContainer">
+    <div class="closingDays">
+        <h1 class="w3-jumbo">Stängda dagar</h1>
+    </div>
+        <table class="holidays">
+          <tr>
+            <th>Nyårsdagen</th>
+            <td></td>
+            <td>1 Januari</td>
+          </tr>
+          <tr>
+            <th>Trettondedag jul</th>
+            <td></td>
+            <td>6 Januari</td>
+          </tr>
+          <tr>
+            <th>Första maj</th>
+            <td></td>
+            <td>1 Maj</td>
+          </tr>
+          <tr>
+            <th>Sveriges nationaldag</th>
+            <td></td>
+            <td>6 Juni</td>
+          </tr>
+          <tr>
+              <th>Julafton</th>
+              <td></td>
+              <td>24 December</td>
+          </tr>
+          <tr>
+              <th>Juldagen</th>
+              <td></td>
+              <td>25 December</td>
+          </tr>
+          <tr>
+              <th>Annandag jul</th>
+              <td></td>
+              <td>26 December</td>
+          </tr>
+          <tr>
+            <th>Nyårsafton</th>
+            <td></td>
+            <td>31 December</td>
+          </tr>
+        </table>
+  </div>
+</div> -->
+
+<!-- Menu Container -->
+<div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="products">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Produkter</h1>
+    <div class="w3-row w3-center">
+      <main class="cards">
+        <article class="card w3-light-grey">
+          <img src="assets/img/brollopsblommor.jpg" alt="Bröllopsbukett">
+          <div class="text">
+            <h3 class="w3-bold">Bröllopsbukett</h3>
+            <p class="w3-italic w3-text-grey">1200 kr</p>
+          </div>
+        </article>
+        <article class="card w3-light-grey">
+          <img src="assets/img/krans.jpg" alt="Begravningskrans">
+          <div class="text">
+            <h3 class="w3-bold">Begravningskrans</h3>
+            <p class="w3-italic w3-text-grey">800 kr</p>
+          </div>
+        </article>
+        <article class="card w3-light-grey">
+          <img src="assets/img/hostbukett.jpg" alt="Höstbukett">
+          <div class="text">
+            <h3 class="w3-bold">Höstbukett</h3>
+            <p class="w3-italic w3-text-grey">400 kr</p>
+          </div>
+        </article>
+        <article class="card w3-light-grey">
+          <img src="assets/img/sommarbukett.jpg" alt="Sommarbukett">
+          <div class="text">
+            <h3 class="w3-bold">Sommarbukett</h3>
+            <p class="w3-italic w3-text-grey">200 kr</p>
+          </div>
+        </article>
+        <article class="card w3-light-grey">
+          <img src="assets/img/rosor.jpg" alt="Rosor 10-pack">
+          <div class="text">
+            <h3 class="w3-bold">Rosor 10-pack</h3>
+            <p class="w3-italic w3-text-grey">150 kr</p>
+          </div>
+        </article>
+        <article class="card w3-light-grey">
+          <img src="assets/img/tulpaner.jpg" alt="Tulpaner 10-pack">
+          <div class="text">
+            <h3 class="w3-bold">Tulpaner 10-pack</h3>
+            <p class="w3-italic w3-text-grey">100 kr</p>
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- Services -->
+<div class="w3-container w3-padding-64 w3-grey-purple w3-xlarge" id="services">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="color: white;">Tjänster</h1>
+    <!-- <p style="width:450px;margin-left:auto;margin-right:auto;text-align: center;font-size: 20px; margin-bottom: 64px;color: white;">Vill du använda några av våra tjänster? Ring gärna oss på 0630-555-555!</p> -->
+    <div class="w3-row w3-center">
+      <article class="serviceCards">
+        <div class="serviceCard w3-light-grey">
+          <img src="assets/img/tjanster.jpg" alt="Blomma på svart bakgrund">
+          <div class="text w3-xlarge">
+            <h3 class="w3-bold">Konsultation 30 minuter</h3>
+            <p class="w3-italic w3-text-grey">250 kr</p>
+          </div>
+        </div>
+      </article>      
+    </div>
+  </div>
+</div>
+
+<!-- Team Container -->
+<div class="container w3-light-grey w3-padding-top-64" id="team">
+  <h1 class="w3-center w3-jumbo" style="margin-bottom:16px">Vår personal</h1>
+  <p class="team-intro">Välkommen till oss på Florist Blåklinten! Vi är ett sammansvetsat gäng med olika expertkompetenser som därmed kan hjälpa dig på bästa sätt utifrån dina behov.</p>
+  <div class="row">
+    <div class="our-team">
+      <div class="picture">
+        <img class="img-fluid" src="assets/img/personal/orjan_johansson.png" alt="Örjan Johansson, personal">
+      </div>
+      
+      <div class="team-content">
+        <div class="team-text">
+        <p class="team-title">Örjan Johansson</p>
+        <p class="team-job">Florist</p>
+        <p>Om du behöver en bukett, oavsett om det är till bröllop, födelsedagsfirande eller något helt annat kan jag hjälpa dig att komponera buketten utifrån dina önskemål.</p>
+      </div>
+      </div>
+      </div>
+
+      <div class="our-team">
+        <div class="picture">
+          <img class="img-fluid" src="assets/img/personal/anna_pettersson.png" alt="Anna Pettersson, personal">
+        </div>
+        <div class="team-content">
+          <div class="team-text" >
+          <p class="team-title">Anna Pettersson</p>
+          <p class="team-job">Hortonom</p>
+          <p>Jag är utbildad hortonom och kan hjälpa dig eller ditt företag att göra det bästa valet utifrån dina behov och förutsättningar vad det gäller fruktträd, grönsaksodling och prydnadsväxter.</p>
+        </div>
+        </div>
+        </div>
+        <div class="our-team">
+          <div class="picture">
+            <img class="img-fluid" src="assets/img/personal/fredrik_ortqvist.png" alt="Fredrik Örtqvist, personal">
+          </div>
+          <div class="team-content">
+            <div class="team-text" >
+            <p class="team-title">Fredrik Örtqvist</p>
+            <p class="team-job">Ägare</p>
+            <p>Min kärlek till blommor lade grunden till att Florist Blåklinten finns idag och jag hoppas att du som kund kan inspireras i vår butik.</p>
+          </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<!-- Find us Container -->
+<div class="container w3-light-grey w3-padding-top-64" style="padding-bottom: 25px;" id="find-us">
+  
+</div>
+
+<!-- Footer -->
+<div class="w3-center w3-black w3-padding-48" style="width:100%; display: flex; justify-content: center;">
+  
+  <div class="footer-content">
+    <div class="contact">
+      <div style="margin-bottom: 50px;">
+        <h1>Kontakta oss</h1>
+        <p>De Wijks väg 29<br>612 30 Finspång</p>
+        <a href="tel:0630-555-555">0630-555-555</a><br>
+        <a href="mailto:info@ntig-uppsala.github.io">info@ntig-uppsala.github.io</a>
+      </div>
+      <div>
+        <h1>Följ oss</h1>
+        <a class="fa fa-facebook" href="https://facebook.com/ntiuppsala" style="text-decoration:none;"></a>
+        <a class="fa fa-twitter" href="https://twitter.com/ntiuppsala" style="text-decoration:none;"></a>
+        <a class="fa fa-instagram" href="https://instagram.com/ntiuppsala" style="text-decoration:none;"></a>
+      </div>
+    </div>
+
+    <div class="map">
+      <h1>Hitta oss</h1>
+      <div id="map">
+        <noscript>
+        <img src="assets/img/map.png" style="height: 100%; width: 100%; object-fit: cover;" alt="Karta över området där Florist Blåklinten har sin lokal">
+        </noscript>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<footer class="w3-black w3-padding-48">
+  <div class="w3-center">
+    <p style="color: white; font-size: 20px;" >&copy; 2022 NTI-Gymnasiet</p>
+  </div>
+</footer>
+
+<script src="assets/scripts/script.js"></script>
+
+</body>
+</html>
