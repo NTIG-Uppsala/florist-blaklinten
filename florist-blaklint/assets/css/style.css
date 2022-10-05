@@ -115,6 +115,14 @@ body,h1,h2,h3,h4,h5,h6{
   top: 0;
 }
 
+.postnumberContainer {
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 
 .bgimg {
   background-repeat: no-repeat;
