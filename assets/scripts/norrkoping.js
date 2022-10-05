@@ -1,11 +1,24 @@
+pageLang = document.getElementsByTagName('html')[0].getAttribute('lang');
+
 let submitContainer = document.getElementById("submitContainer");
-submitContainer.innerHTML = `      
-    <p style="color: white; font-size: 20px;"> Ange ditt postnummer nedan <br> för att se om vi kör ut till dig.</p>
-    <p style="color: white;" id="submitMessage"></p>
-    <form id="submitForm">  
-        <input type="text" id="submitText">
-        <button type="submit" id="submitButton">Skicka</button>
-    </form>`
+
+if (pageLang == "sv") {
+    submitContainer.innerHTML = `      
+        <p style="color: white; font-size: 20px;"> Ange ditt postnummer nedan <br> för att se om vi kör ut till dig.</p>
+        <p style="color: white;" id="submitMessage"></p>
+        <form id="submitForm">  
+            <input type="text" id="submitText">
+            <button type="submit" id="submitButton">Skicka</button>
+        </form>`
+} else {
+    submitContainer.innerHTML = `
+        <p style="color: white; font-size: 20px;"> Введіть свій поштовий індекс нижче, <br> щоб дізнатися, чи ми доставляємо вам.</p>
+        <p style="color: white;" id="submitMessage"></p>
+        <form id="submitForm">
+            <input type="text" id="submitText">
+            <button type="submit" id="submitButton">Надіслати</button>
+        </form>`
+}
 
 let iframe_data = `
     <iframe 
@@ -37,12 +50,22 @@ document.getElementById("submitButton").onclick = function() {
 
     let userInput = parseInt(document.getElementById("submitText").value);
 
-    if (userInput.toString().length !== 5) {
-        document.getElementById("submitMessage").innerHTML = "Det angivna postnumret är inte giltigt!";
-    } else if (postnumbers.includes(userInput)) {
-        document.getElementById("submitMessage").innerHTML = "Vi kör ut till ditt postnummer!";
+    if (pageLang == "sv") {
+        if (userInput.toString().length !== 5) {
+            document.getElementById("submitMessage").innerHTML = "Det angivna postnumret är inte giltigt!";
+        } else if (postnumbers.includes(userInput)) {
+            document.getElementById("submitMessage").innerHTML = "Vi kör ut till ditt postnummer!";
+        } else {
+            document.getElementById("submitMessage").innerHTML = "Vi kör inte ut till detta postnummer!";
+        }
     } else {
-        document.getElementById("submitMessage").innerHTML = "Vi kör inte ut till detta postnummer!";
+        if (userInput.toString().length !== 5) {
+            document.getElementById("submitMessage").innerHTML = "Введений поштовий індекс недійсний!";
+        } else if (postnumbers.includes(userInput)) {
+            document.getElementById("submitMessage").innerHTML = "Доставляємо на ваш поштовий індекс!";
+        } else {
+            document.getElementById("submitMessage").innerHTML = "Ми не доставляємо на цей поштовий індекс!";
+        }
     }
 
 }
