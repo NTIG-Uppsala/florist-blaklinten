@@ -101,6 +101,29 @@ class CheckWebsite(unittest.TestCase):
             
             self.assertIn(self.page_names[crntIndex], [link.get_attribute("href").split('/')[-1] for link in links])
 
+    # Checks all homepage links exists
+    def test_click_links_homepage(self):
+        self.driver.get(self.website_url + "index.html")	
+        links = self.driver.find_elements(By.CSS_SELECTOR, "#page-content a")
+        expectedLinks = [
+            "finspang.html",
+            "norrkoping.html",
+        ]
+
+        expectedLinksUa = [
+            "finspang-ua.html",
+            "norrkoping-ua.html",
+        ]
+
+        for link in links:
+            self.assertIn(link.get_attribute("href").split("/")[-1], expectedLinks)
+        
+        self.driver.get(self.website_url + "index-ua.html")
+        linksUa = self.driver.find_elements(By.CSS_SELECTOR, "#page-content a")
+
+        for link in linksUa:
+            self.assertIn(link.get_attribute("href").split("/")[-1], expectedLinksUa)
+
     # Checks all info on index page
     def test_check_info_homepage(self):
         self.driver.get(self.website_url + "index.html")
