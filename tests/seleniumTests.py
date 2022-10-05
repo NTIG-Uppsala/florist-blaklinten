@@ -1,3 +1,4 @@
+from gettext import textdomain
 import unittest
 import sys
 import requests
@@ -38,24 +39,19 @@ class CheckWebsite(unittest.TestCase):
     # Check if "Florist Blåklinten" is in the <title> of the page
     def test_page_title(self):
         for p in self.page_names:
-            print("testing page: {}".format(p))
             self.driver.get(self.website_url + p)
             title = self.driver.title
             self.assertIn(title, "Florist Blåklinten")
-            print("Page title found on page " + p)
 
     def test_check_logo(self):
         for p in self.page_names:
             self.driver.get(self.website_url + p)
-            print("Checking logo exists on: {}".format(p))
             logoElement = self.driver.find_element(By.XPATH, "//link[@type='image/x-icon']")
             self.assertIn('favicon.ico', logoElement.get_attribute("href"))
-            print("Logo found on page " + p)
 
     # checks for empty links
     def test_check_for_empty_links(self):
         for p in self.page_names:
-            print("Checking for empty links on: {}".format(p))
 
             self.driver.get(self.website_url + p)
             links = self.driver.find_elements(By.TAG_NAME, "a")
@@ -63,21 +59,18 @@ class CheckWebsite(unittest.TestCase):
             for link in links:
                 self.assertNotEqual(link.get_attribute("href").split("/")[-1], "#")
                 self.assertIsNotNone(link.get_attribute("href"))
-            print("No empty links found on page " + p)
 
     def test_menu_links(self):
         for p in self.page_names:
             if p == "index.html" or p == "index-ua.html":
                 pass
-                print("Skipping index page")
             else:
-                print("Checking menu links on: {}".format(p))
                 self.driver.get(self.website_url + p)
 
                 navigation = self.driver.find_element(By.TAG_NAME, "nav")
                 links = navigation.find_elements(By.TAG_NAME, "a")
                 required_links = [
-                    "#home",
+                    "#header",
                     "#products",
                     "#services",
                     "#team",
@@ -90,12 +83,10 @@ class CheckWebsite(unittest.TestCase):
                         tag_list.append(x.split("html",1)[1])
 
                     self.assertIn(link, tag_list)
-                print("Menu links found on page " + p)
     
 
     def test_flag_links(self):
         for p in self.page_names:
-            print("Checking flag links on: {}".format(p))
             self.driver.get(self.website_url + p)
 
             if "ua" in p:
@@ -107,9 +98,8 @@ class CheckWebsite(unittest.TestCase):
             links = navigation.find_elements(By.TAG_NAME, "a")
             
             self.assertIn(self.page_names[crntIndex], [link.get_attribute("href").split('/')[-1] for link in links])
-            print("Flag links found on page " + p)
 
-    def test_check_info_homepage(self):
+    def test_check_info_headerpage(self):
         self.driver.get(self.website_url + "index.html")
         pageText = self.driver.find_element(By.ID, "page-content").text.replace("\n", " ")
         copyrightText = self.driver.find_element(By.TAG_NAME, "footer").text.replace("\n", " ")
@@ -129,12 +119,10 @@ class CheckWebsite(unittest.TestCase):
 
         for text in pageText:
             self.assertIn(text, pageText)
-        print("Page text found")
 
         self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
-        print("Copyright text found")
 
-    def test_check_info_ukrainian_homepage(self):
+    def test_check_info_ukrainian_headerpage(self):
         self.driver.get(self.website_url + "index-ua.html")
         pageText = self.driver.find_element(By.ID, "page-content").text.replace("\n", " ")
         copyrightText = self.driver.find_element(By.TAG_NAME, "footer").text.replace("\n", " ")
@@ -154,308 +142,214 @@ class CheckWebsite(unittest.TestCase):
 
         for text in pageText:
             self.assertIn(text, pageText)
-        print("Page text found")
 
         self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
-        print("Copyright text found")
 
     def test_check_info_ukrainian_finspang(self):
         self.driver.get(self.website_url + "finspang-ua.html")
 
-        headerText = self.driver.find_element(By.ID, "home").text.replace("\n", " ")
-        openHourText = self.driver.find_element(By.CLASS_NAME, "openHours").text.replace("\n", " ")
-        serviceText = self.driver.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
-        productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
-        teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
-        closedDaysText = self.driver.find_element(By.ID, "holidays").text.replace("\n", " ")
-        copyrightText = self.driver.find_element(By.TAG_NAME, "footer").text.replace("\n", " ")
+        textDict = {
+            "header": [
+                "Florist Blåklinten",
+                "Для бронювання та замовлення телефонуйте нам 0630-555-555",
+            ],
+            "products": [
+                "Весільний букет", "1200 kr",
+                "Вінок", "800 kr",
+                "Осінній букет", "400 kr",
+                "Літній букет", "200 kr",
+                "Троянди 10 шт", "150 kr", 
+                "Тюльпани 10 шт", "100 kr", 
+            ],
+            "services": [
+                "Консультація 30 хв", "250 kr"
+            ],
+            "openHours": [
+                "Пн-Пт", "10 - 16",
+                "Субота", "12 - 15",
+                "неділя", "Зачинено"
+            ],
+            "team": [
+                "Наш персонал",
+                "Вітаємо у Florist Blåklinten! Наша дружня команда з різними експертними навичками,які можуть допомогти вам найкращим чином.",
+                "Örjan Johansson",
+                "Флорист",
+                "Якщо вам потрібен букет,чи то на весілля,день народження чи щось зовсім інше,я можу вам допомогти скласти букет за вашим бажанням.",
+                "Anna Pettersson",
+                "Експерт-садiвник",
+                "Я кваліфікований садівник і можу допомогти вам або вашій компанії зробити найкращий вибір,фруктових дерев,декоративних рослин або овочевих культур,враховуючи ваші потреби,умови та вподобання.",
+                "Fredrik Örtqvist",
+                "Власник",
+                "Моя любов до квітів заклала основу для існування Florist Blåklinten сьогодні, і я сподіваюся, що ви як клієнт можете надихнутися в нашому магазині."
+            ],
+            "holidays": [
+                "Вихідні дні",
+                "Новий рік",
+                "1 січня",
+                "Тринадцятий день Різдва",
+                "6 січня",
+                "1 травня",
+                "1 травня",
+                "Національний день Швеції",
+                "6 червня",
+                "Святвечір",
+                "24 грудня",
+                "Різдво",
+                "25 грудня",
+                "День подарунків Різдва",
+                "26 грудня",
+                "Переддень Нового року",
+                "31 грудня",
+            ],
+            "copyright": [
+                "© 2022 NTI-Gymnasiet"
+            ]
+        } 
 
-        header = [
-            "Florist Blåklinten",
-            "Для бронювання та замовлення телефонуйте нам 0630-555-555",
-        ]
-
-        products = [
-            "Весільний букет", "1200 kr",
-            "Вінок", "800 kr",
-            "Осінній букет", "400 kr",
-            "Літній букет", "200 kr",
-            "Троянди 10 шт", "150 kr", 
-            "Тюльпани 10 шт", "100 kr", 
-        ]
-
-        services = [
-            "Консультація 30 хв", "250 kr"
-        ]
-
-        openHours = [
-            "Пн-Пт", "10 - 16",
-            "Субота", "12 - 15",
-            "неділя", "Зачинено"
-        ]
-
-        team = [
-            "Наш персонал",
-            "Вітаємо у Florist Blåklinten! Наша дружня команда з різними експертними навичками,які можуть допомогти вам найкращим чином.",
-            "Örjan Johansson",
-            "Флорист",
-            "Якщо вам потрібен букет,чи то на весілля,день народження чи щось зовсім інше,я можу вам допомогти скласти букет за вашим бажанням.",
-            "Anna Pettersson",
-            "Експерт-садiвник",
-            "Я кваліфікований садівник і можу допомогти вам або вашій компанії зробити найкращий вибір,фруктових дерев,декоративних рослин або овочевих культур,враховуючи ваші потреби,умови та вподобання.",
-            "Fredrik Örtqvist",
-            "Власник",
-            "Моя любов до квітів заклала основу для існування Florist Blåklinten сьогодні, і я сподіваюся, що ви як клієнт можете надихнутися в нашому магазині."
-        ]
-
-        closedDays = [
-            "Вихідні дні",
-            "Новий рік",
-            "1 січня",
-            "Тринадцятий день Різдва",
-            "6 січня",
-            "1 травня",
-            "1 травня",
-            "Національний день Швеції",
-            "6 червня",
-            "Святвечір",
-            "24 грудня",
-            "Різдво",
-            "25 грудня",
-            "День подарунків Різдва",
-            "26 грудня",
-            "Переддень Нового року",
-            "31 грудня",
-        ]
-
-        for text in header:
-            self.assertIn(text, headerText)
-        print("Header text found")
-        
-        for hours in openHours:
-            self.assertIn(hours, openHourText)
-        print("Open hours found")
-
-        for service in services:
-            self.assertIn(service, serviceText)
-        print("Services found")
-
-        for product in products:
-            self.assertIn(product, productText)
-        print("Products found")
-
-        for text in team:
-            self.assertIn(text, teamText)
-        print("Team text found")
-
-        for text in closedDays:
-            self.assertIn(text, closedDaysText)
-        print("Closed days text found")
-
-        self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
-        print("Copyright text found")
+        for section, content in textDict.items():
+            for text in content:
+                self.assertIn(text, self.driver.find_element(By.ID, section).text.replace("\n", " "))
+                
 
     def test_check_info_ukrainian_norrkoping(self):
         self.driver.get(self.website_url + "norrkoping-ua.html")
 
-        headerText = self.driver.find_element(By.ID, "home").text.replace("\n", " ")
-        openHourText = self.driver.find_element(By.CLASS_NAME, "openHours").text.replace("\n", " ")
-        serviceText = self.driver.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
-        productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
-        teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
-        closedDaysText = self.driver.find_element(By.ID, "holidays").text.replace("\n", " ")
-        copyrightText = self.driver.find_element(By.TAG_NAME, "footer").text.replace("\n", " ")
+        textDict = {
+            "header": [
+                "Florist Blåklinten",
+                "Для бронювання та замовлення телефонуйте нам 0640-555-333",
+            ],
+            "products": [
+                "Весільний букет", "1200 kr",
+                "Вінок", "800 kr",
+                "Осінній букет", "400 kr",
+                "Літній букет", "200 kr",
+                "Троянди 10 шт", "150 kr", 
+                "Тюльпани 10 шт", "100 kr", 
+            ],
+            "services": [
+                "Консультація 30 хв", "250 kr"
+            ],
+            "openHours": [
+                "Понеділок", "10 - 17",
+                "Вівторок", "10 - 16",
+                "Середа", "10 - 15",
+                "четвер", "10 - 16",
+                "П'ятниця", "10 - 16",
+                "Субота", "12 - 15",
+                "Неділя", "Зачинено"
+            ],
+            "team": [
+                "Наш персонал",
+                "Вітаємо у Florist Blåklinten! Наша дружня команда з різними експертними навичками,які можуть допомогти вам найкращим чином.",
+                "Johan Olsson",
+                "Флорист",
+                "У своїх японських садах я знаходжу спокій і натхнення. Моя спеціалізація – спілкування з клієнтами, де ми разом створюємо індивідуальну квіткову концепцію!",
+                "Anna Andersson",
+                "Флорист",
+                "Коли я складаю букет, то починаю з квітки. Я додаю по одній квітці в цю серцевину, поки букет не стане потрібного розміру.",
+                "Elin Nygård",
+                "Експерт-садiвник",
+                "Мій сад – мій найкращий учитель. Дозвольте мені поділитися знаннями, які я отримав за десятки сезонів чергування пишних кольорів і уповільненого росту."
+            ],
+            "holidays": [
+                "Вихідні дні",
+                "Новий рік",
+                "1 січня",
+                "Тринадцятий день Різдва",
+                "6 січня",
+                "1 травня",
+                "1 травня",
+                "Національний день Швеції",
+                "6 червня",
+                "Святвечір",
+                "24 грудня",
+                "Різдво",
+                "25 грудня",
+                "День подарунків Різдва",
+                "26 грудня",
+                "Переддень Нового року",
+                "31 грудня",
+            ],
+            "copyright": [
+                "© 2022 NTI-Gymnasiet"
+            ]
+        }
 
-        header = [
-            "Florist Blåklinten",
-            "Для бронювання та замовлення телефонуйте нам 0640-555-333",
-        ]
-
-        products = [
-            "Весільний букет", "1200 kr",
-            "Вінок", "800 kr",
-            "Осінній букет", "400 kr",
-            "Літній букет", "200 kr",
-            "Троянди 10 шт", "150 kr", 
-            "Тюльпани 10 шт", "100 kr", 
-        ]
-
-        services = [
-            "Консультація 30 хв", "250 kr"
-        ]
-
-        openHours = [
-            "Понеділок", "10 - 17",
-            "Вівторок", "10 - 16",
-            "Середа", "10 - 15",
-            "четвер", "10 - 16",
-            "П'ятниця", "10 - 16",
-            "Субота", "12 - 15",
-            "Неділя", "Зачинено"
-        ]
-
-        team = [
-            "Наш персонал",
-            "Вітаємо у Florist Blåklinten! Наша дружня команда з різними експертними навичками,які можуть допомогти вам найкращим чином.",
-            "Johan Olsson",
-            "Флорист",
-            "У своїх японських садах я знаходжу спокій і натхнення. Моя спеціалізація – спілкування з клієнтами, де ми разом створюємо індивідуальну квіткову концепцію!",
-            "Anna Andersson",
-            "Флорист",
-            "Коли я складаю букет, то починаю з квітки. Я додаю по одній квітці в цю серцевину, поки букет не стане потрібного розміру.",
-            "Elin Nygård",
-            "Експерт-садiвник",
-            "Мій сад – мій найкращий учитель. Дозвольте мені поділитися знаннями, які я отримав за десятки сезонів чергування пишних кольорів і уповільненого росту."
-        ]
-
-        closedDays = [
-            "Вихідні дні",
-            "Новий рік",
-            "1 січня",
-            "Тринадцятий день Різдва",
-            "6 січня",
-            "1 травня",
-            "1 травня",
-            "Національний день Швеції",
-            "6 червня",
-            "Святвечір",
-            "24 грудня",
-            "Різдво",
-            "25 грудня",
-            "День подарунків Різдва",
-            "26 грудня",
-            "Переддень Нового року",
-            "31 грудня",
-        ]
-
-        for text in header:
-            self.assertIn(text, headerText)
-        print("Header text found")
-        
-        for hours in openHours:
-            self.assertIn(hours, openHourText)
-        print("Open hours found")
-
-        for service in services:
-            self.assertIn(service, serviceText)
-        print("Services found")
-
-        for product in products:
-            self.assertIn(product, productText)
-        print("Products found")
-
-        for text in team:
-            self.assertIn(text, teamText)
-        print("Team text found")
-
-        for text in closedDays:
-            self.assertIn(text, closedDaysText)
-        print("Closed days text found")
-
-        self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
-        print("Copyright text found")
+        for section, content in textDict.items():
+            for text in content:
+                self.assertIn(text, self.driver.find_element(By.ID, section).text.replace("\n", " "))
 
 
     # checks for important information on the website
     def test_check_info_on_finspang(self):
         self.driver.get(self.website_url + "finspang.html")
 
-        headerText = self.driver.find_element(By.ID, "home").text.replace("\n", " ")
-        openHourText = self.driver.find_element(By.CLASS_NAME, "openHours").text.replace("\n", " ")
-        serviceText = self.driver.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
-        productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
-        teamText = self.driver.find_element(By.ID, "team").text.replace("\n", " ")
-        closedDaysText = self.driver.find_element(By.ID, "holidays").text.replace("\n", " ")
-        copyrightText = self.driver.find_element(By.TAG_NAME, "footer").text.replace("\n", " ")
+        textDict = {
+            "header": [
+                "Florist Blåklinten",
+                "För bokning och beställning ring oss på 0630-555-555",
+            ],
+            "products": [
+                "Bröllopsbukett", "1200 kr",
+                "Begravningskrans", "800 kr",
+                "Höstbukett", "400 kr",
+                "Sommarbukett", "200 kr",
+                "Rosor 10-pack", "150 kr", 
+                "Tulpaner 10-pack", "100 kr", 
+            ],
+            "services": [
+                "Konsultation 30 minuter", "250 kr"
+            ],
+            "openHours":[
+                "Vardagar", "10 - 16",
+                "Lördag", "12 - 15",
+                "Söndag", "Stängt"
+            ],
+            "team": [
+                "Vår personal",
+                "Välkommen till oss på Florist Blåklinten! Vi är ett sammansvetsat gäng med olika expertkompetenser som därmed kan hjälpa dig på bästa sätt utifrån dina behov.",
+                "Örjan Johansson",
+                "Florist",
+                "Om du behöver en bukett, oavsett om det är till bröllop, födelsedagsfirande eller något helt annat kan jag hjälpa dig att komponera buketten utifrån dina önskemål.",
+                "Anna Pettersson",
+                "Hortonom",
+                "Jag är utbildad hortonom och kan hjälpa dig eller ditt företag att göra det bästa valet utifrån dina behov och förutsättningar vad det gäller fruktträd, grönsaksodling och prydnadsväxter.",
+                "Fredrik Örtqvist",
+                "Ägare",
+                "Min kärlek till blommor lade grunden till att Florist Blåklinten finns idag och jag hoppas att du som kund kan inspireras i vår butik."
+            ],
+            "holidays": [
+                "Nyårsdagen",
+                "1 Januari",
+                "Trettondedag jul",
+                "6 Januari",
+                "Första maj",
+                "1 Maj",
+                "Sveriges nationaldag",
+                "6 Juni",
+                "Julafton",
+                "24 December",
+                "Juldagen",
+                "25 December",
+                "Annandag jul",
+                "26 December",
+                "Nyårsafton",
+                "31 December",
+            ],
+            "copyright": [
+                "© 2022 NTI-Gymnasiet"
+            ]
+        }
 
-        header = [
-            "Florist Blåklinten",
-            "För bokning och beställning ring oss på 0630-555-555",
-        ]
-
-        products = [
-            "Bröllopsbukett", "1200 kr",
-            "Begravningskrans", "800 kr",
-            "Höstbukett", "400 kr",
-            "Sommarbukett", "200 kr",
-            "Rosor 10-pack", "150 kr", 
-            "Tulpaner 10-pack", "100 kr", 
-        ]
-
-        services = [
-            "Konsultation 30 minuter", "250 kr"
-        ]
-
-        openHours = [
-            "Vardagar", "10 - 16",
-            "Lördag", "12 - 15",
-            "Söndag", "Stängt"
-        ]
-
-        team = [
-            "Vår personal",
-            "Välkommen till oss på Florist Blåklinten! Vi är ett sammansvetsat gäng med olika expertkompetenser som därmed kan hjälpa dig på bästa sätt utifrån dina behov.",
-            "Örjan Johansson",
-            "Florist",
-            "Om du behöver en bukett, oavsett om det är till bröllop, födelsedagsfirande eller något helt annat kan jag hjälpa dig att komponera buketten utifrån dina önskemål.",
-            "Anna Pettersson",
-            "Hortonom",
-            "Jag är utbildad hortonom och kan hjälpa dig eller ditt företag att göra det bästa valet utifrån dina behov och förutsättningar vad det gäller fruktträd, grönsaksodling och prydnadsväxter.",
-            "Fredrik Örtqvist",
-            "Ägare",
-            "Min kärlek till blommor lade grunden till att Florist Blåklinten finns idag och jag hoppas att du som kund kan inspireras i vår butik."
-        ]
-
-        closedDays = [
-            "Nyårsdagen",
-            "1 Januari",
-            "Trettondedag jul",
-            "6 Januari",
-            "Första maj",
-            "1 Maj",
-            "Sveriges nationaldag",
-            "6 Juni",
-            "Julafton",
-            "24 December",
-            "Juldagen",
-            "25 December",
-            "Annandag jul",
-            "26 December",
-            "Nyårsafton",
-            "31 December",
-        ]
-
-        for text in header:
-            self.assertIn(text, headerText)
-        print("Header text found")
-        
-        for hours in openHours:
-            self.assertIn(hours, openHourText)
-        print("Open hours found")
-
-        for service in services:
-            self.assertIn(service, serviceText)
-        print("Services found")
-
-        for product in products:
-            self.assertIn(product, productText)
-        print("Products found")
-
-        for text in team:
-            self.assertIn(text, teamText)
-        print("Team text found")
-
-        for text in closedDays:
-            self.assertIn(text, closedDaysText)
-        print("Closed days text found")
-
-        self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
-        print("Copyright text found")
+        for section, content in textDict.items():
+            for text in content:
+                self.assertIn(text, self.driver.find_element(By.ID, section).text.replace("\n", " "))
 
     def test_check_info_on_norrkoping(self):
         self.driver.get(self.website_url + "norrkoping.html")
 
-        headerText = self.driver.find_element(By.ID, "home").text.replace("\n", " ")
+        headerText = self.driver.find_element(By.ID, "header").text.replace("\n", " ")
         openHourText = self.driver.find_element(By.CLASS_NAME, "openHours").text.replace("\n", " ")
         serviceText = self.driver.find_element(By.CLASS_NAME, "serviceCards").text.replace("\n", " ")
         productText = self.driver.find_element(By.CLASS_NAME, "cards").text.replace("\n", " ")
@@ -526,37 +420,29 @@ class CheckWebsite(unittest.TestCase):
 
         for text in header:
             self.assertIn(text, headerText)
-        print("Header text found")
         
         for hours in openHours:
             self.assertIn(hours, openHourText)
-        print("Open hours found")
 
         for service in services:
             self.assertIn(service, serviceText)
-        print("Services found")
 
         for product in products:
             self.assertIn(product, productText)
-        print("Products found")
 
         for text in team:
             self.assertIn(text, teamText)
-        print("Team text found")
 
         for text in closedDays:
             self.assertIn(text, closedDaysText)
-        print("Closed days text found")
 
         self.assertIn("© 2022 NTI-Gymnasiet", copyrightText)
-        print("Copyright text found")
 
     # checks background image
     def test_check_background(self):
         for p in self.page_names:
             if p == "index.html" or p == "index-ua.html":
                 pass
-                print("No background image on index page")
             else:
                 if p == "finspang.html" or p == "finspang-ua.html":
                     bg_image = "bg-b.jpg"
@@ -566,16 +452,13 @@ class CheckWebsite(unittest.TestCase):
                     bg_class = "bgimg2"
 
                 self.driver.get(self.website_url + p)
-                print(p, bg_image, bg_class)
                 my_property = self.driver.find_element(By.CLASS_NAME, bg_class).value_of_css_property("background-image")
                 # my_property = WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located((By.CSS_SELECTOR, bg_class))).value_of_css_property("background-image")
                 self.assertIn(bg_image, my_property)
-                print("Background images found on " + p)
 
     # checks images on the page and if they exists
     def test_for_images_on_page(self):
         for p in self.page_names:
-            print("Checking images on " + p)
             self.driver.get(self.website_url)
             # get all elements with img tag
             image_elements = self.driver.find_elements(By.TAG_NAME, 'img')
@@ -586,12 +469,10 @@ class CheckWebsite(unittest.TestCase):
                 # if the img has a src attribute with a image
                 if image.get_attribute('src') is not None:
                     # Assert that the image source is fetchable from the server ( < 400 )
-                    print("Checking {}".format(image_source))
                     self.assertLess(requests.get(image_source).status_code, 400)
                 else:  # assert False (Just a fail)
                     self.assertTrue(False)
                     continue
-            print("Images found on " + p)
 
     def test_for_large_images(self):
         images = Path(__file__).resolve().parents[1] / Path('florist-blaklint/assets/images/')
@@ -599,7 +480,6 @@ class CheckWebsite(unittest.TestCase):
         for image in images.glob('**/*.*'):
             # Get the file size property
             image_size = Path(image).stat().st_size
-            print("Image path: {} \t image size: {}".format(image, image_size))
             # Assert if the file is greater than 500kb
             self.assertGreater(500_000, image_size)
 
@@ -608,7 +488,6 @@ class CheckWebsite(unittest.TestCase):
         for p in self.page_names:
             if p == "index-ua.html" or p == "index.html":
                 pass
-                print("No social links on index page")
             else:
                 self.driver.get(self.website_url + p)
 
@@ -623,7 +502,6 @@ class CheckWebsite(unittest.TestCase):
                     socialHref = socialElement.get_attribute("href")
 
                     self.assertEqual(socialHref, f"https://{social}.com/ntiuppsala")
-                print("Social links found on " + p)
 
     # Check for map
     def test_check_map(self):
