@@ -445,6 +445,49 @@ class CheckWebsite(unittest.TestCase):
             for text in content:
                 self.assertIn(text, txt)
 
+    def test_postnumber(self):
+        finspang_postnumbers = [
+            98139,
+            98140,
+            98142,
+            98138,
+        ]
+
+        norrkoping_postnumbers = [
+            96193,
+            96194,
+            96190,
+            96191,
+        ]
+
+        for p in self.page_names:
+            if p == "index-ua.html" or p == "index.html":
+                pass
+            else:
+                self.driver.get(self.website_url + p)
+                if p == "finspang.html" or p == "finspang-ua.html":
+                    current_postnumber = finspang_postnumbers
+                    if p == "finspang.html":
+                        current_msgCheck = "Vi kör ut till ditt postnummer!"
+                    else:
+                        current_msgCheck = "Доставляємо на ваш поштовий індекс!"
+                else:
+                    current_postnumber = norrkoping_postnumbers
+                    if p == "norrkoping.html":
+                        current_msgCheck = "Vi kör ut till ditt postnummer!"
+                    else:
+                        current_msgCheck = "Доставляємо на ваш поштовий індекс!"
+
+                for postnumber in current_postnumber:
+                    inp = self.driver.find_element(By.ID, "submitText")
+                    inp.clear()
+                    inp.send_keys(postnumber)
+                    self.driver.find_element(By.ID, "submitButton").click()
+                    message = self.driver.find_element(By.ID, "submitMessage").text
+                    self.assertIn(current_msgCheck, message)
+
+
+
     # checks background image
     def test_check_background(self):
         for p in self.page_names:
