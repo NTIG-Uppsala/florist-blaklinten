@@ -145,9 +145,8 @@ class CheckWebsite(unittest.TestCase):
             "De Wijks väg 29",
             "612 30 Finspång",
             "Norrköping",
-            "Färjledsvägen 38",
-            "961 93 Norrköping",
-            "Södra Sunderbyn"
+            "Fähusgatan 21H",
+            "603 72 Norrköping"
         ]
 
         for text in pageText:
@@ -169,9 +168,8 @@ class CheckWebsite(unittest.TestCase):
             "De Wijks väg 29",
             "612 30 Finspång",
             "Norrköping",
-            "Färjledsvägen 38",
-            "961 93 Norrköping",
-            "Södra Sunderbyn"
+            "Fähusgatan 21H",
+            "603 72 Norrköping"
         ]
 
         for text in pageText:
@@ -562,12 +560,19 @@ class CheckWebsite(unittest.TestCase):
 
     # Check for map
     def test_check_map(self):
-        self.driver.get(self.website_url + "finspang.html")
-        map_url = "google.com/maps/embed?pb=!1m18!1m12!1m3!1d2072.472099087858!2d15.768257516460107!3d58.70529006794066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46594feedcca3b1d%3A0x6c778af446b70e00!2sDe%20Wijks%20v%C3%A4g%2029%2C%20612%2030%20Finsp%C3%A5ng!5e0!3m2!1sen!2sse!4v1664435816938!5m2!1sen!2sse"
-        map_element = self.driver.find_element(By.ID, "mapiframe")
+        for p in self.page_names:
+            if p == "index.html" or p == "index-ua.html":
+                pass
+            else:
+                if "norrkoping" in p:
+                    url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2080.2348908448453!2d16.245968316391878!3d58.57474118140123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46593b2205ba56fd%3A0x15793d63ff39bc0c!2sF%C3%A4husgatan%2021%2C%20603%2072%20Norrk%C3%B6ping!5e0!3m2!1ssv!2sse!4v1665056140145!5m2!1ssv!2sse"
+                else:
+                    url = "google.com/maps/embed?pb=!1m18!1m12!1m3!1d2072.472099087858!2d15.768257516460107!3d58.70529006794066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46594feedcca3b1d%3A0x6c778af446b70e00!2sDe%20Wijks%20v%C3%A4g%2029%2C%20612%2030%20Finsp%C3%A5ng!5e0!3m2!1sen!2sse!4v1664435816938!5m2!1sen!2sse"
+                self.driver.get(self.website_url + p)
+                map_element = self.driver.find_element(By.ID, "mapiframe")
 
-        self.assertTrue(map_element.is_displayed())
-        self.assertIn(map_url, map_element.get_attribute("src"))
+                self.assertTrue(map_element.is_displayed())
+                self.assertIn(url, map_element.get_attribute("src"))
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
