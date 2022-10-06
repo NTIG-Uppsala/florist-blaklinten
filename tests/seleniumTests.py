@@ -1,4 +1,3 @@
-from gettext import textdomain
 import unittest
 import sys
 import requests
@@ -67,6 +66,10 @@ class CheckWebsite(unittest.TestCase):
             if p == "index.html" or p == "index-ua.html":
                 pass
             else:
+                if "ua" in p:
+                    localsPage = "index-ua.html"
+                else:
+                    localsPage = "index.html"
                 self.driver.get(self.website_url + p)
 
                 navigation = self.driver.find_element(By.TAG_NAME, "nav")
@@ -76,13 +79,17 @@ class CheckWebsite(unittest.TestCase):
                     "#products",
                     "#services",
                     "#team",
-                    "#find-us"
+                    "#find-us",
+                    localsPage
                 ]
                 for link in required_links:
                     tag_list = []
                     crnt_tag = [link.get_attribute("href").split('/')[-1] for link in links]
                     for x in crnt_tag:
-                        tag_list.append(x.split("html",1)[1])
+                        if "#" in x:
+                            tag_list.append(x.split("html",1)[1])
+                        else:
+                            tag_list.append(x)
 
                     self.assertIn(link, tag_list)
     
