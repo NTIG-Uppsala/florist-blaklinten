@@ -494,6 +494,7 @@ class CheckWebsite(unittest.TestCase):
                     self.driver.find_element(By.ID, "submitButton").click()
                     message = self.driver.find_element(By.ID, "submitMessage").text
                     self.assertIn(current_msgCheck, message)
+                    print(f"Postnummer {postnumber} fungerar på sidan {p}")
 
 
 
