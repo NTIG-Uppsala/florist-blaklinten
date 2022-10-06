@@ -33,6 +33,10 @@ body,h1,h2,h3,h4,h5,h6{
   background-color: #ce6941;
 }
 
+.secondOrange:hover {
+  background-color: #ce6941;
+}
+
 .header .headerTitle {
   display: block;
   float: left;
@@ -127,11 +131,11 @@ body,h1,h2,h3,h4,h5,h6{
   display: none;
   position: absolute;
   background-color: #000000;
-  width: 60px;
+  width: 58px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
-  right: -4px;
-  top: 50px;
+  right: -1px;
+  top: 58px;
   z-index: 1;
 }
 
@@ -481,6 +485,7 @@ iframe{
       clear: none;
       float: right;
       max-height: none;
+      margin-right: 60px;
     }
     .header .menu-icon {
       display: none;
