@@ -118,12 +118,15 @@ body,h1,h2,h3,h4,h5,h6{
 .dropdown {
   display: inline-block;
   height: 50px;
+  right: 60px;
+  top: 0px;
+  position: absolute;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #000000;
   width: 60px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
@@ -481,6 +484,10 @@ iframe{
     }
     .header .menu-icon {
       display: none;
+    }
+
+    .dropdown { 
+      right: 0px;
     }
   }
 
