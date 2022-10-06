@@ -491,12 +491,10 @@ class CheckWebsite(unittest.TestCase):
                     inp = self.driver.find_element(By.ID, "submitText")
                     inp.clear()
                     inp.send_keys(postnumber)
-                    self.driver.find_element(By.ID, "submitButton").click()
+                    element = self.driver.find_element(By.ID, "submitButton")
+                    self.driver.execute_script("arguments[0].click();", element)
                     message = self.driver.find_element(By.ID, "submitMessage").text
                     self.assertIn(current_msgCheck, message)
-                    print(f"Postnummer {postnumber} fungerar på sidan {p}")
-
-
 
     # checks background image
     def test_check_background(self):
