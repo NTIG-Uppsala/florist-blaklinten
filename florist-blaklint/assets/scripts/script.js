@@ -1,20 +1,6 @@
 let pageLang = document.getElementsByTagName('html')[0].getAttribute('lang');
 
-let openhours = {
-    "weekdays": {
-        "open": 10,
-        "close": 16
-    },
-    "saturday": {
-        "open": 12,
-        "close": 15
-    },
-    "sunday": {
-        "open": "Closed",
-        "close": "Closed"
-    }
-}
-let closed_days, openhours_text;
+let closed_days;
 
 if (pageLang == 'uk') {
     /* sort closed days relative to today */
@@ -28,18 +14,6 @@ if (pageLang == 'uk') {
         { title: 'День подарунків Різдва', month_worded: "грудня", month: 12, day: 26 },
         { title: 'Переддень Нового року', month_worded: "грудня", month: 12, day: 31 }
     ];
-
-    openhours_text = {
-        "closed": "Сьогодні ми закриті",
-        "closing_soon": "Ми скоро зачиняємося",
-        "weekdayopenuntil": "Ми працюємо до 16:00",
-        "weekdayopen": "Ми відкриваємось о 10:00",
-        "weekdayclosed": "Ми відкриваємось о 10:00 завтра",
-        "weekdayclosed2": "Ми відкриваємось о 12 ранку. завтра",
-        "weekendopenuntil": "Ми працюємо до 15:00",
-        "weekendopen": "Ми відкриваємось о 12:00",
-        "weekendclosed": "Ми знову відкриваємось у понеділок о 10:00",
-    }
 }
 else {
     /* sort closed days relative to today */
@@ -53,58 +27,12 @@ else {
         { title: 'Annandag jul', month_worded: "December", month: 12, day: 26 },
         { title: 'Nyårsafton', month_worded: "December", month: 12, day: 31 }
     ];
-
-    openhours_text = {
-        "closed": "Vi har stängt idag",
-        "closing_soon": "Vi stänger snart",
-        "weekdayopenuntil": "Vi har öppet till klockan 16 idag",
-        "weekdayopen": "Vi öppnar klockan 10",
-        "weekdayclosed": "Vi öppnar klockan 10 imorgon",
-        "weekdayclosed2": "Vi öppnar klockan 12 imorgon",
-        "weekendopenuntil": "Vi har öppet till klockan 15 idag",
-        "weekendopen": "Vi öppnar klockan 12",
-        "weekendclosed": "Vi öppnar igen på Måndag klockan 10",
-    }
 }
 
-
-openhour_element = document.querySelector('#live-openhours');
-
-const current_date = new Date();
-const current_day = current_date.getDay();
-const current_hour = current_date.getHours();
-const current_minute = current_date.getMinutes();
-
-if (current_day == 0) {
-    openhour_element.innerText = openhours_text.closed;
-} else if (current_day == 6) {
-    if ((current_hour == (openhours.saturday.close - 1)) && current_minute >= 30) {
-        openhour_element.innerText = openhours_text.closing_soon;
-    } else if (current_hour >= openhours.saturday.open && current_hour < openhours.saturday.close) {
-        openhour_element.innerText = openhours_text.weekendopenuntil;
-    } else if (current_hour >= openhours.saturday.close) {
-        openhour_element.innerText = openhours_text.weekendclosed;
-    } else {
-        openhour_element.innerText = openhours_text.weekendopen;
-    }
-} else if (current_day >= 1 && current_day <= 5) {
-    if ((current_hour == (openhours.weekdays.close - 1)) && current_minute >= 30) {
-        openhour_element.innerText = openhours_text.closing_soon;
-    } else if (current_hour >= openhours.weekdays.open && current_hour < openhours.weekdays.close) {
-        openhour_element.innerText = openhours_text.weekdayopenuntil;
-    } else if (current_hour >= openhours.weekdays.close) {
-        if (current_day + 1 == 6) {
-            openhour_element.innerText = openhours_text.weekdayclosed2;
-        } else {
-            openhour_element.innerText = openhours_text.weekdayclosed;
-        }
-    } else {
-        openhour_element.innerText = openhours_text.weekdayopen;
-    }
-}
-
-
-
+let current_date = new Date();
+let current_day = current_date.getDay();
+let current_hour = current_date.getHours();
+let current_minute = current_date.getMinutes();
 
 /* Sort closing days */
 let closed_days_element = document.querySelector('.holidays');
