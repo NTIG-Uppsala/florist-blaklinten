@@ -7,7 +7,7 @@ if (pageLang == "sv") {
         <p style="color: white; font-size: 20px;"> Ange ditt postnummer nedan <br> för att se om vi kör ut till dig.</p>
         <p style="color: white;" id="submitMessage"></p>
         <form id="submitForm">  
-            <input type="text" id="submitText">
+            <input type="text" placeholder="Postnummer" id="submitText">
             <button type="submit" id="submitButton">Skicka</button>
         </form>`
 } else {
@@ -15,7 +15,7 @@ if (pageLang == "sv") {
         <p style="color: white; font-size: 20px;"> Введіть свій поштовий індекс нижче, <br> щоб дізнатися, чи ми доставляємо вам.</p>
         <p style="color: white;" id="submitMessage"></p>
         <form id="submitForm">
-            <input type="text" id="submitText">
+            <input type="text" placeholder="Поштовий індекс" id="submitText">
             <button type="submit" id="submitButton">Надіслати</button>
         </form>`
 }
