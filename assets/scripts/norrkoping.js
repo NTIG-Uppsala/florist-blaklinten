@@ -23,7 +23,7 @@ if (pageLang == "sv") {
 let iframe_data = `
     <iframe 
         id="mapiframe" 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2072.472099087858!2d15.768257516460107!3d58.70529006794066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46594feedcca3b1d%3A0x6c778af446b70e00!2sDe%20Wijks%20v%C3%A4g%2029%2C%20612%2030%20Finsp%C3%A5ng!5e0!3m2!1sen!2sse!4v1664435816938!5m2!1sen!2sse"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2080.2348908448453!2d16.245968316391878!3d58.57474118140123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46593b2205ba56fd%3A0x15793d63ff39bc0c!2sF%C3%A4husgatan%2021%2C%20603%2072%20Norrk%C3%B6ping!5e0!3m2!1ssv!2sse!4v1665056140145!5m2!1ssv!2sse"
         style="border:0;"
         allowfullscreen=""
         width="300"
