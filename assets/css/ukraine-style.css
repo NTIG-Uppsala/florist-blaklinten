@@ -115,6 +115,33 @@ body,h1,h2,h3,h4,h5,h6{
   top: 0;
 }
 
+.dropdown {
+  display: inline-block;
+  height: 50px;
+  right: 60px;
+  top: 0px;
+  position: absolute;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #000000;
+  width: 60px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  right: -4px;
+  top: 50px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding-top: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 .postnumberContainer {
   height: 70px;
   display: flex;
@@ -454,6 +481,10 @@ iframe{
     }
     .header .menu-icon {
       display: none;
+    }
+
+    .dropdown { 
+      right: 0px;
     }
   }
 
