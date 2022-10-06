@@ -522,6 +522,9 @@ iframe{
       margin: 50px;
     }
 
+    .map {
+      margin-top: 30px;
+    }
   }
 
   @media screen and (max-width: 520px) {
