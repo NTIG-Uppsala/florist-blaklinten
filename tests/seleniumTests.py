@@ -37,10 +37,15 @@ class CheckWebsite(unittest.TestCase):
 
     # Check if "Florist Blåklinten" is in the <title> of the page
     def test_page_title(self):
+        pageTitles = [
+            "Florist Blåklinten",
+            "Florist Blåklinten | Norrköping",
+            "Florist Blåklinten | Finspång", 
+        ]
         for p in self.page_names:
             self.driver.get(self.website_url + p)
             title = self.driver.title
-            self.assertIn(title, "Florist Blåklinten")
+            self.assertIn(title, pageTitles)
 
     # Check if page has correct logo
     def test_check_logo(self):
