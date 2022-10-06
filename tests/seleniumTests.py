@@ -183,6 +183,7 @@ class CheckWebsite(unittest.TestCase):
         textDict = {
             "header": [
                 "Florist Blåklinten",
+                "Finspång",
                 "Для бронювання та замовлення телефонуйте нам 0630-555-555",
             ],
             "products": [
@@ -250,6 +251,7 @@ class CheckWebsite(unittest.TestCase):
         textDict = {
             "header": [
                 "Florist Blåklinten",
+                "Norrköping",
                 "Для бронювання та замовлення телефонуйте нам 0640-555-333",
             ],
             "products": [
@@ -322,6 +324,7 @@ class CheckWebsite(unittest.TestCase):
         textDict = {
             "header": [
                 "Florist Blåklinten",
+                "Finspång",
                 "För bokning och beställning ring oss på 0630-555-555",
             ],
             "products": [
@@ -387,6 +390,7 @@ class CheckWebsite(unittest.TestCase):
         textDict = {
             "header": [
                 "Florist Blåklinten",
+                "Norrköping",
                 "För bokning och beställning ring oss på 0640-555-333",
             ],
             "products": [
